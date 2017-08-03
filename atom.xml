@@ -1,41 +1,676 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Hexo</title>
+  <title>Baronli</title>
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-02T09:23:41.976Z</updated>
+  <updated>2017-08-03T06:22:44.094Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>John Doe</name>
+    <name>Baronli</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2017/08/02/hello-world/"/>
-    <id>http://yoursite.com/2017/08/02/hello-world/</id>
-    <published>2017-08-02T09:23:41.976Z</published>
-    <updated>2017-08-02T09:23:41.976Z</updated>
+    <title>Linux终端操作MySQL常用命令</title>
+    <link href="http://yoursite.com/2017/08/03/MySql%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2017/08/03/MySql命令/</id>
+    <published>2017-08-03T06:22:44.094Z</published>
+    <updated>2017-08-03T06:22:44.094Z</updated>
     
-    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p> Linux终端操作MySQL常用命令<br>1.终端启动 MySQL：/etc/init.d/mysql start</p>
+<p> 2.登录 MySQL：mysql -uroot -p (用 root 账户登录),然后输入密码 </p>
+<p>3.查看所有的数据库名字：show databases; </p>
+<p>4.选择一个数据库操作： use database_name; </p>
+<p>5.查看当前数据库下所有的表名：show tables; </p>
+<p>6.创建一个数据库：create database database_name; </p>
+<p>7.删除一个数据库：drop database database_name; </p>
+<p>8.创建一个表: create table mytest( uid bigint(20) not null primary key, uname varchar(20) not null); </p>
+<p>9.删除一个表: drop table mytest; </p>
+<p>10.SQL 插入语句：insert into table_name(col1,col2) values(value1,value2); </p>
+<p>11.SQL 更新语句：update table_name set col1=’value1’,col2=’value2’ where where_definition; </p>
+<p>12.SQL 查询语句：select * from table_name where…….</p>
+<p>13.SQL 删除语句：delete from table_name where… </p>
+<p>14.增加表结构的字段：alert table table_name add column field1 date ,add column field2 time… </p>
+<p>15.删除表结构的字段：alert table table_name drop field1; </p>
+<p>16.查看表的结构：show columns from table_name; </p>
+<p>17.limit 的使用：select * from table_name limit 3;   //每页只显示 3 行 </p>
+<p>select * from table_name limit 3,4;   //从查询结果的第三个开始，显示四项结果。 此处可很好的用来作分页处理。 </p>
+<p>18.对查询结果进行排序: select * from table_name order by field1,orderby field2;多重排序 </p>
+<p>19.退出 MySQL:exit; </p>
+<p>20.删除表中所有数据： truncate table 数据表名称 （不可恢复） Linux终端操作MySQL常用命令<br>2015-09-20 12:29 6368人阅读 评论(1) 收藏 举报<br> 分类： Linux（3）<br>1.终端启动 MySQL：/etc/init.d/mysql start</p>
+<p> 2.登录 MySQL：mysql -uroot -p (用 root 账户登录),然后输入密码 </p>
+<p>3.查看所有的数据库名字：show databases; </p>
+<p>4.选择一个数据库操作： use database_name; </p>
+<p>5.查看当前数据库下所有的表名：show tables; </p>
+<p>6.创建一个数据库：create database database_name; </p>
+<p>7.删除一个数据库：drop database database_name; </p>
+<p>8.创建一个表: create table mytest( uid bigint(20) not null primary key, uname varchar(20) not null); </p>
+<p>9.删除一个表: drop table mytest; </p>
+<p>10.SQL 插入语句：insert into table_name(col1,col2) values(value1,value2); </p>
+<p>11.SQL 更新语句：update table_name set col1=’value1’,col2=’value2’ where where_definition; </p>
+<p>12.SQL 查询语句：select * from table_name where…….</p>
+<p>13.SQL 删除语句：delete from table_name where… </p>
+<p>14.增加表结构的字段：alert table table_name add column field1 date ,add column field2 time… </p>
+<p>15.删除表结构的字段：alert table table_name drop field1; </p>
+<p>16.查看表的结构：show columns from table_name; </p>
+<p>17.limit 的使用：select * from table_name limit 3;   //每页只显示 3 行 </p>
+<p>select * from table_name limit 3,4;   //从查询结果的第三个开始，显示四项结果。 此处可很好的用来作分页处理。 </p>
+<p>18.对查询结果进行排序: select * from table_name order by field1,orderby field2;多重排序 </p>
+<p>19.退出 MySQL:exit; </p>
+<p>20.删除表中所有数据： truncate table 数据表名称 （不可恢复）</p>
+<p>linux下导入、导出mysql数据库命令</p>
+<p>一、导出数据库用mysqldump命令（注意mysql的安装路径，即此命令的路径）：<br>1、导出数据和表结构：<br>mysqldump -u用户名 -p密码 数据库名 &gt; 数据库名.sql</p>
+<p>#/usr/local/mysql/bin/   mysqldump -uroot -p abc &gt; abc.sql<br>敲回车后会提示输入密码</p>
+<p>2、只导出表结构<br>mysqldump -u用户名 -p密码 -d 数据库名 &gt; 数据库名.sql</p>
+<p>#/usr/local/mysql/bin/   mysqldump -uroot -p -d abc &gt; abc.sql</p>
+<p>注：/usr/local/mysql/bin/  —&gt;  mysql的data目录</p>
+<p>二、导入数据库<br>1、首先建空数据库<br>mysql&gt;create database abc;</p>
+<p>2、导入数据库<br>方法一：<br>（1）选择数据库<br>mysql&gt;use abc;<br>（2）设置数据库编码<br>mysql&gt;set names utf8;<br>（3）导入数据（注意sql文件的路径）<br>mysql&gt;source /home/abc/abc.sql;<br>方法二：<br>mysql -u用户名 -p密码 数据库名 &lt; 数据库名.sql</p>
+<p>#mysql -uabc_f -p abc &lt; abc.sql</p>
+<p>建议使用第二种方法导入。</p>
+<p>注意：有命令行模式，有sql命令</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt; Linux终端操作MySQL常用命令&lt;br&gt;1.终端启动 MySQL：/etc/init.d/mysql start&lt;/p&gt;
+&lt;p&gt; 2.登录 MySQL：mysql -uroot -p (用 root 账户登录),然后输入密码 &lt;/
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java线程</title>
+    <link href="http://yoursite.com/2017/08/03/Java_Thread/"/>
+    <id>http://yoursite.com/2017/08/03/Java_Thread/</id>
+    <published>2017-08-03T06:22:35.858Z</published>
+    <updated>2017-08-03T06:22:35.858Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>###Java线程<br>sleep(int num) 方法是指当前的线程睡眠 num 时间，在线程的 run 方法中调用（是 Thread 的一个方法），有同学会无意中写在 Runnable 中，发现 sleep     方法始终不被识别。</p>
+<p>Object lock = new Object();<br><br>lock 可以执行 wait 和 notify 方法，进行不同线程的状态切换<br><br><br><br>wait() 当前已经获得锁的线程进入等待状态 <br><br>notify() 当前线程结束，并通知处于等待状态的线程继续执行</p>
+<p><strong>每个对象都有一把锁</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Object lock = <span class="keyword">new</span> Object();&lt;br&gt;</div><div class="line"><span class="comment">//线程1中的加锁语句</span></div><div class="line"><span class="keyword">synchronized</span> (lock) &#123;</div><div class="line"><span class="comment">//。。。</span></div><div class="line"><span class="keyword">try</span> &#123;						   </div><div class="line">  lock.wait(); <span class="comment">//当前线程进入等待状态</span></div><div class="line">&#125; </div><div class="line"><span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">  e.printStackTrace();</div><div class="line">&#125;</div><div class="line"><span class="comment">//。。。</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//线程2中的加锁语句</span></div><div class="line"><span class="keyword">synchronized</span> (lock) &#123;</div><div class="line"><span class="comment">//。。。</span></div><div class="line">lock.notify();<span class="comment">//通知启动等待状态的线程开启</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>1、流程1，先 start 线程1，后 start 线程2<br>执行到线程1的加锁语句，此时lock没有加锁顺利执行，然后执行lock.wait();此时lock的锁进入等待状态（可以被其他访问）<br>线程2中的加锁语句就可以拿到锁，执行完语句后，lock.notify()进行了唤醒通知，wait队列中的等待线程开始执行Object lock = new Object();<br></p>
+<p>####注意事项<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Thread()&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line"><span class="comment">//...</span></div><div class="line">&#125;</div><div class="line">&#125;.start();</div></pre></td></tr></table></figure></p>
+<p>main()创建 Thread 对象时,它并未捕获任何一个对象的句柄。普通对象对于垃圾收集来说是一种“公平竞<br>赛”,但线程却并非如此。每个线程都会“注册”自己,所以某处实际存在着对它的一个引用。这样一来,<br>垃圾收集器便只好对它“瞠目以对”了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;###Java线程&lt;br&gt;sleep(int num) 方法是指当前的线程睡眠 num 时间，在线程的 run 方法中调用（是 Thread 的一个方法），有同学会无意中写在 Runnable 中，发现 sleep     方法始终不被
+    
+    </summary>
+    
+      <category term="Java" scheme="http://yoursite.com/categories/Java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux使用记录</title>
+    <link href="http://yoursite.com/2017/08/03/Linux%E4%BD%BF%E7%94%A8%E6%9D%83%E9%99%90/"/>
+    <id>http://yoursite.com/2017/08/03/Linux使用权限/</id>
+    <published>2017-08-03T06:22:24.146Z</published>
+    <updated>2017-08-03T06:22:24.146Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>####Linux使用记录</p>
+<p>#####(1)文件权限设置<br>ls -l命令列文件表时<br>如果用命令chmod 777 tt.htm，结果是<br><br>-rwxrwxrwx  1 bu users 2254 2006-05-20 13:47 tt.htm<br><br>任何人都有读、写、运行三项权限。<br>用ls -l命令列文件表时，得到如下输出:<br>-rw-r–r–  1 bu users  2254 2006-05-20 13:47 tt.htm<br>从第二个字符起rw-是说用户bu有读、写权，没有运行权，接着的r–表示用户组users只有读权限，没有运行权，最后的r–指其他人（others）只有读权限，没有写权和运行权。这是系统默认设置，我可以改写tt.htm，同组的人和其他人只有权读，没人有权运行，因为只是一个html文件，不必运行。这在Novell的directory services之前很先进。<br>读、写、运行三项权限可以用数字表示，就是r=4,w=2,x=1。所以，上面的例子中的rw-r–r–用数字表示成644。<br>反过来说777就是rwxrwxrwx，意思是该登录用户（可以用命令id查看）、他所在的组和其他人都有最高权限。<br>再多说一句。我用chmod o-r tt.htm命令改权限，o-r是others的权限中减掉读。结果是<br>-rw-r—–  1 bu users 2254 2006-05-20 13:47 tt.htm<br>如果用命令chmod 777 tt.htm，结果是</p>
+<p>#####(2)新增系统用户<br>运行 sudo adduser linc 　新建 linc 用户。</p>
+<p>[sudo] password for linc:</p>
+<p>报错：linc 不在 sudoers 文件中。此事将被报告。<br>解决办法，在sudoers中添加用户</p>
+<p>sudo gedit /etc/sudoers　<br></p>
+<p>root    ALL=(ALL:ALL) ALL<br><br>linc    ALL=(ALL:ALL) ALL</p>
+<p>#####(5)MySql配置<br>首先建立好数据库。在 Gogs 目录的 scripts/mysql.sql 文件是数据库初始化文件。执行 mysql -u root -p &lt; scripts/mysql.sql （需要输入密码）即可初始化好数据库。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;####Linux使用记录&lt;/p&gt;
+&lt;p&gt;#####(1)文件权限设置&lt;br&gt;ls -l命令列文件表时&lt;br&gt;如果用命令chmod 777 tt.htm，结果是&lt;br&gt;&lt;br&gt;-rwxrwxrwx  1 bu users 2254 20
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Linux常用命令集</title>
+    <link href="http://yoursite.com/2017/08/03/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E9%9B%86%E9%94%A6/"/>
+    <id>http://yoursite.com/2017/08/03/Linux常用命令集锦/</id>
+    <published>2017-08-03T06:22:16.794Z</published>
+    <updated>2017-08-03T06:22:16.794Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>####Linux常用命令集</p>
+<p>######查看目录内容<br>＃ ls <br><br>＃ ls -a  (罗列所有内容包括隐藏的文件)<br><br>＃ atom test.txt (用atom程序打开test.txt文件)</p>
+<p>######新建、复制、移动、删除文件<br>＃markdir testFile (新建testFile文件夹)</p>
+<p>######清理回收站<br>（1）$su root      //进入root用户模式<br><br>（2）＃cd /home/gyb/.Trash       //进入用户目录下的回收站，其中gyb是我自己建的用户目录<br><br>（3）＃rm –rf *        //清空回收站<br></p>
+<p>######Java<br>export JAVA_HOME=/home/baron/work/jdk1.8.0_121<br>export PATH=$JAVA_HOME/bin:$PATH</p>
+<p>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+<p>#####权限不够<br>程序执行权限  #chmod +x  testFile/test.txt<br>修改访问权限　＃chmod 777 testFile/test.txt </p>
+<p>######tomcat启动失败</p>
+<p>baron@baron-pc:~/work/tomcat-8.5.13/bin$ ./startup.sh<br>Cannot find ./catalina.sh<br>The file is absent or does not have execute permission<br>This file is needed to run this program</p>
+<p>解决方法：</p>
+<p>依旧在tomcat 的bin目录下 </p>
+<p>执行 chmod +x *.sh  </p>
+<p>然后用sh startup.sh启动成功</p>
+<p>######Wifi<br>(1)＃ifconfig<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wlp2s0: flags=<span class="number">4099</span>&lt;UP,BROADCAST,MULTICAST&gt;  mtu <span class="number">1500</span></div><div class="line">        ether a0:c5:<span class="number">89</span>:<span class="number">5</span>a:<span class="number">86</span>:<span class="number">06</span>  txqueuelen <span class="number">4096</span>  (Ethernet)</div><div class="line">        RX packets <span class="number">400249</span>  bytes <span class="number">145213400</span> (<span class="number">138.4</span> MiB)</div><div class="line">        RX errors <span class="number">0</span>  dropped <span class="number">0</span>  overruns <span class="number">0</span>  frame <span class="number">0</span></div><div class="line">        TX packets <span class="number">986439</span>  bytes <span class="number">1071274285</span> (<span class="number">1021.6</span> MiB)</div><div class="line">        TX errors <span class="number">0</span>  dropped <span class="number">0</span> overruns <span class="number">0</span>  carrier <span class="number">0</span>  collisions <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>(2)＃sudo ip link set wlp2s0 up <br><br>(3)＃sudo iw dev wlp2s0 scan | less <br></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;####Linux常用命令集&lt;/p&gt;
+&lt;p&gt;######查看目录内容&lt;br&gt;＃ ls &lt;br&gt;&lt;br&gt;＃ ls -a  (罗列所有内容包括隐藏的文件)&lt;br&gt;&lt;br&gt;＃ atom test.txt (用atom程序打开test.txt文
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/Linux/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Json解析技巧（利用泛型）</title>
+    <link href="http://yoursite.com/2017/08/03/Gson%E8%A7%A3%E6%9E%90Json%E6%95%B0%E6%8D%AE/"/>
+    <id>http://yoursite.com/2017/08/03/Gson解析Json数据/</id>
+    <published>2017-08-03T06:21:56.978Z</published>
+    <updated>2017-08-03T06:21:56.978Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>####Json解析技巧（利用泛型）<br>下面是一个比较典型的Json返回格式<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "success": true,</div><div class="line">    "description": "",</div><div class="line">    "data": [</div><div class="line">        &#123;</div><div class="line">            "pictureNumber": "402848145690b87d01569283d8230527",</div><div class="line">            "companyId": "402848145690b87d01569283d8230527",</div><div class="line">            "itemName": "机房、滑轮间环境：清洁，门窗完好、照明正常 ",</div><div class="line">            "isPicture": "402848145690b87d01569283d8230527",</div><div class="line">            "isQr": "402848145690b87d01569283d8230527",</div><div class="line">            "id": "402848f95be5db65015be5e4ea4d0001"</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            "pictureNumber": "402848145690b87d01569283d8230527",</div><div class="line">            "companyId": "402848145690b87d01569283d8230527",</div><div class="line">            "itemName": "导靴上油杯：吸油毛毡齐全，油量适宜，油杯无泄露",</div><div class="line">            "isPicture": "402848145690b87d01569283d8230527",</div><div class="line">            "isQr": "402848145690b87d01569283d8230527",</div><div class="line">            "id": "402848f95be5db65015be5e4ea8f000a"</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>一般的Json返回数据有”success”，”description”，这两个相同，主要区别在于”data”<brng><br>我们在利用Gson进行转换时需要利用Json结果转换得到对应实体。<br>为了提高代码重复利用，我们可以利用泛型设计统一的结果数据处理器。</brng></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Json结果转化器</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Result</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">boolean</span> success;</div><div class="line">    String  description;</div><div class="line">    List&lt;T&gt; data;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 实体类</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WbOrderItem</span></span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * pictureNumber(拍照数量) : 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * companyId : 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * itemName(项次名) : 机房、滑轮间环境：清洁，门窗完好、照明正常　</span></div><div class="line"><span class="comment">     * isPicture（是否拍照）: 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * isQr （是否扫码）: 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * id : 402848f95be5db65015be5e4ea4d0001</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> String pictureNumber;</div><div class="line">    <span class="keyword">private</span> String companyId;</div><div class="line">    <span class="keyword">private</span> String itemName;</div><div class="line">    <span class="keyword">private</span> String isPicture;</div><div class="line">    <span class="keyword">private</span> String isQr;</div><div class="line">    <span class="keyword">private</span> String id;</div><div class="line">&#125;</div></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;####Json解析技巧（利用泛型）&lt;br&gt;下面是一个比较典型的Json返回格式&lt;br&gt;&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div clas
+    
+    </summary>
+    
+      <category term="Http" scheme="http://yoursite.com/categories/Http/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Http编码格式</title>
+    <link href="http://yoursite.com/2017/08/03/Http%E5%86%85%E5%AE%B9%E7%BC%96%E7%A0%81%E6%A0%BC%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/08/03/Http内容编码格式/</id>
+    <published>2017-08-03T06:21:51.613Z</published>
+    <updated>2017-08-03T06:21:51.613Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>####Http编码格式<br>Volley中Request默认接收的编码格式为iso-8859-1，后台接口如果没有指定Content-Type:”application/json; charset=UTF-8”的格式，Volley就会默认转成iso-8859-1。<br>Java的String 编码格式转换方式。iso-8859-1为欧洲编码格式，不支持中文。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str=liftArray.toString();</div><div class="line">str=<span class="keyword">new</span> String(str.getBytes(<span class="string">"iso-8859-1"</span>),<span class="string">"utf-8"</span>);</div></pre></td></tr></table></figure></p>
+<p> UTF-8  GBk  Unicode</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;####Http编码格式&lt;br&gt;Volley中Request默认接收的编码格式为iso-8859-1，后台接口如果没有指定Content-Type:”application/json; charset=UTF-8”的格式，Volley就
+    
+    </summary>
+    
+      <category term="Http" scheme="http://yoursite.com/categories/Http/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Gogs使用介绍</title>
+    <link href="http://yoursite.com/2017/08/03/Gogs%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://yoursite.com/2017/08/03/Gogs使用详解/</id>
+    <published>2017-08-03T06:21:29.697Z</published>
+    <updated>2017-08-03T06:21:29.697Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>###Gogs使用介绍<br>Gogs是一款类似Github(国内有码市)的开源文件／代码管理系统（基于Git）<br>Gos官方地址：<a href="http://www.oschina.net/p/gogs/" target="_blank" rel="external">http://www.oschina.net/p/gogs/</a><br><br><strong>目前功能基本介绍</strong><br><br>远程代码仓库管理<br><br>代码仓库权限分配、管理<br><br>团队管理<br><br>代码审查<br></p>
+<p>####(1)注册<br><img src="./注册.png" alt="注册"></p>
+<hr>
+<p>####(2)基本功能介绍</p>
+<p>######主面板说明<br><img src="./images/Gogs页面基本.png" alt="基本"></p>
+<hr>
+<p>图中１表示自己个人账户下的仓库（所有权属于自己）<br><br>图中２表示自己参与的仓库(所有权不属于自己)<br></p>
+<p><strong>注意</strong><br><br>自己个人账户下的仓库一般为自己创建，或者其他仓库所有者转让仓库。自己对该仓库具有全部权限（写入／删除文件、增加成员、删除成员、合并分之、审核分之）</p>
+<hr>
+<p>######新建仓库<br><img src="./images/创建仓库.png" alt="创建仓库"></p>
+<hr>
+<p>在主面板中点击我的仓库右侧的”+”按钮后进入新建仓库页面，在此页面中我们需哟啊输入仓库的基本描述，并设置可见属性.<br><br><strong>注意</strong><br><br>在创建仓库按钮的上方有一个复选框“使用选定文件和模板初始化仓库”。<br>这里如果不选，则会生成一个空仓库，我们需要在本地生成一个仓库（或者原有仓库），然后将本地仓库的远程仓库地址设置成我们在Gogs中新建的仓库地址。</p>
+<hr>
+<p>######仓库使用基介绍<br><img src="./images/仓库介绍.png" alt="仓库介绍"></p>
+<hr>
+<p>图中１仓库中的文件管理页面<br><br>图中２仓库的工单管理页面<br><br>图中３仓库的合并请求管理（代码审查、合并）<br><br>图中４查看代码的分支<br><br>图中５在浏览器中上传和下载文件（不依赖Git）<br><br>图中６当前仓库的远程地址（将其拷贝下来，将本地的对应仓库的origin地址设置）<br><br>图中７当前仓库的文件阅览<br></p>
+<hr>
+<p>######基于浏览器进行文件上传下载<br><img src="./images/浏览器上传.png" alt="仓库介绍"><br>可以直接在浏览器中进行文件上传</p>
+<hr>
+<p><img src="./images/gog文档在线查看.png" alt="在线"><br>可以直接在浏览器查看对应文档，或者下载文档</p>
+<hr>
+<p>######工单管理<br>省略。。。</p>
+<p>######合并管理<br>省略。。。</p>
+<hr>
+<p>####(4)组织管理<br>Git魅力不仅仅体现在对代码的管理，还有有效的管理团队合作上<br></p>
+<p>######组织管理介绍<br>Gogs也专门提供了<strong>组织</strong>管理功能（组织可以代表一个公司，可以在<strong>组织</strong>下建立仓库、添加组织成员，然后通过创建和设置团队，将组织名下的仓库分别授权给不同的成员）</p>
+<hr>
+<p><img src="./images/组织管理.png" alt="仓库组织"><br>图中点击”我的组织”后面的“＋”号可以新建组织</p>
+<hr>
+<p><img src="./images/组织页面.png" alt="组织页面"></p>
+<hr>
+<p>图中１显示当前组织下的仓库，点击创建新仓库可以添加新的组织<br><br>图中２显示当前组织中的成员，可以点击邀请其他人，添加新的成员<br><br>图中３显示当前组织下设置的团队（每个团对可以分别添加组织下的不同仓库和不同成员，并设置该团队权限（写入、阅读））<br></p>
+<hr>
+<p><img src="./images/团队设置.png" alt="团队设置"></p>
+<hr>
+<p>图中１显示该团队有４名成员<br><br>图中２显示该团队拥有当前组织的２个仓库的权限<br><br>图中３显示该团队对yo拥有的２个仓库具有读取和写入的权限<br></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;###Gogs使用介绍&lt;br&gt;Gogs是一款类似Github(国内有码市)的开源文件／代码管理系统（基于Git）&lt;br&gt;Gos官方地址：&lt;a href=&quot;http://www.oschina.net/p/gogs/&quot; target=&quot;_
+    
+    </summary>
+    
+      <category term="Git" scheme="http://yoursite.com/categories/Git/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>ListView的并发问题（异步加载图片)</title>
+    <link href="http://yoursite.com/2017/08/03/%E5%9B%BE%E7%89%87%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://yoursite.com/2017/08/03/图片异步加载详解/</id>
+    <published>2017-08-03T06:21:08.053Z</published>
+    <updated>2017-08-03T06:21:08.053Z</updated>
+    
+    <content type="html"><![CDATA[<p>###ListView的并发问题（异步加载图片）<br>一般处理图片都是放在异步线程中，当通过ListView或者GridView加载大量图片时，经常会出现图片错乱的问题。</p>
+<p>在此，我们学习和讨论一下大量图片的异步加载、缓存，并优化的问题<br>异步加载图片<br><br>Google的官方加载图片的源代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BitmapWorkerTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> WeakReference imageViewReference;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> data = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BitmapWorkerTask</span><span class="params">(ImageView imageView)</span> </span>&#123;</div><div class="line">        <span class="comment">// Use a WeakReference to ensure the ImageView can be garbage collected</span></div><div class="line">        imageViewReference = <span class="keyword">new</span> WeakReference(imageView);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Decode image in background.</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">doInBackground</span><span class="params">(Integer... params)</span> </span>&#123;</div><div class="line">        data = params[<span class="number">0</span>];</div><div class="line">        <span class="keyword">return</span> decodeSampledBitmapFromResource(getResources(), data, <span class="number">100</span>, <span class="number">100</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Once complete, see if ImageView is still around and set bitmap.</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Bitmap bitmap)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (imageViewReference != <span class="keyword">null</span> &amp;&amp; bitmap != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">final</span> ImageView imageView = imageViewReference.get();</div><div class="line">            <span class="keyword">if</span> (imageView != <span class="keyword">null</span>) &#123;</div><div class="line">                imageView.setImageBitmap(bitmap);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过异步加载可以起到不阻碍主线程并优化内存使用的效果，在单独对某个ImageView使用时是非常有效的。</p>
+<p>但在ListView中时，为了View的重复利用，实际我们是不断在重复使用几个相同的View，而我们在滑动异步加载图片时，无法确定异步任务何时启动何时结束，</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###ListView的并发问题（异步加载图片）&lt;br&gt;一般处理图片都是放在异步线程中，当通过ListView或者GridView加载大量图片时，经常会出现图片错乱的问题。&lt;/p&gt;
+&lt;p&gt;在此，我们学习和讨论一下大量图片的异步加载、缓存，并优化的问题&lt;br&gt;异步加载图片&lt;b
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Androidd代码注意</title>
+    <link href="http://yoursite.com/2017/08/03/Android%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E6%B3%A8%E6%84%8F/"/>
+    <id>http://yoursite.com/2017/08/03/Android代码规范注意/</id>
+    <published>2017-08-03T06:20:32.376Z</published>
+    <updated>2017-08-03T06:20:32.376Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>####Androidd代码注意</p>
+<p>Toast.makeText(context, “待命成功！”, Toast.LENGTH_SHORT).show();</p>
+<p>######[Accessibility] Missing contentDescription attribute on image<br>在一些没有文本显示的控件里，如imageView和imageButton等，ADT会提示你定义一个android:contentDescription属性，用来描述这个控件的作用</p>
+<p>######Missing labelFor attribute(No label views point to this text field with an ‘android:labelFor=”@+id/password_old_input”‘ attribute)<br>需要在EditText属性中添加inputType和labelFor两个属性。其中labelFor属性的值与id值相同即可</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;####Androidd代码注意&lt;/p&gt;
+&lt;p&gt;Toast.makeText(context, “待命成功！”, Toast.LENGTH_SHORT).show();&lt;/p&gt;
+&lt;p&gt;######[Accessibility] Miss
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android一些零碎的知识整理</title>
+    <link href="http://yoursite.com/2017/08/03/Android%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82/"/>
+    <id>http://yoursite.com/2017/08/03/Android一些细节/</id>
+    <published>2017-08-03T06:08:36.703Z</published>
+    <updated>2017-08-03T06:08:36.703Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>####Android一些零碎的知识整理</p>
+<p>######Activity生命周期中的一些细节<br><br>(1) <strong>A</strong> Activity启动<strong>B</strong>Activity时onPause和onDetroy方法与<strong>B</strong> Activity生命周期方法的执行次序<br><br>在A启动Ｂ时会先执行A的onPause方法，然后开始执行B的onCreate　-&gt; onStart -&gt; onResume ,最后执行A的onStop</p>
+<p>(2)鉴于(1)中的方法调用顺序，所以在页面跳转时，不可以在onPause中进行耗时的保存工作，可以进行简单的键值对一类的保存，而是将稍微大些的保存放在onStop中</p>
+<p>(3)Activity的４种加载模式　standard、singleTop、singleInstance、singleTaSK.<br><br>android对Activity的管理，采用Task（即栈）来管理多个Activity，当我们启动一个应用时，Android就会为之创建了一个Task,然后启动这个应用的入口Activity。<br>Android的Task是一个有点麻烦的概念，因为Android并没有为Task提供API,因此开发者无法真正访问Task,只能调用Activity的getTaskId()方法来获取它所在的Task的ID。<br><br>（４）startActivity()方法是否可以在子线程中调用？<br>可以，其实这是一种误导的问题，因为startActivity其实不像View那样，因为View的调用不是线程安全的，必须在主线程中调用否则将抛出错误。而startActivity背后是不一样的</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;####Android一些零碎的知识整理&lt;/p&gt;
+&lt;p&gt;######Activity生命周期中的一些细节&lt;br&gt;&lt;br&gt;(1) &lt;strong&gt;A&lt;/strong&gt; Activity启动&lt;strong&gt;B&lt;/strong&gt;Activit
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android优化总结</title>
+    <link href="http://yoursite.com/2017/08/03/Android%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2017/08/03/Android优化总结/</id>
+    <published>2017-08-03T06:06:25.495Z</published>
+    <updated>2017-08-03T06:06:25.495Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>一个很典型的内部类持有外部类引用的情况<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">mSearchView.setBtnListener(<span class="keyword">new</span> SearchView.BtnListener() &#123;</div><div class="line">            <span class="meta">@Override</span></div><div class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onClick</span><span class="params">()</span> </span>&#123;</div><div class="line">                mSearchView.setText(<span class="string">""</span>);</div><div class="line">            &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;一个很典型的内部类持有外部类引用的情况&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Httpp(Volley)使用注意事项</title>
+    <link href="http://yoursite.com/2017/08/03/Volley%E8%AF%B7%E6%B1%82%E7%9A%84%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
+    <id>http://yoursite.com/2017/08/03/Volley请求的注意事项/</id>
+    <published>2017-08-03T03:46:15.312Z</published>
+    <updated>2017-08-03T03:46:15.312Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>#####　Httpp(Volley)使用注意事项</p>
+<p>#####JSONObjectRequest<br>一般JSONObjectRequest直接将Object放在构造函数里，是直接被放在了请求的Body（RequestBody）中。<br>如果要放在Key-Value　进行传递键值对的话，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">StringRequest stringRequest = <span class="keyword">new</span> StringRequest(Request.Method.POST, url, <span class="keyword">new</span> Response.Listener&lt;String&gt;() &#123;  </div><div class="line">          <span class="meta">@Override</span>  </div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(String response)</span> </span>&#123;  </div><div class="line">            </div><div class="line">      &#125;, <span class="keyword">new</span> Response.ErrorListener() &#123;  </div><div class="line">          <span class="meta">@Override</span>  </div><div class="line">          <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onErrorResponse</span><span class="params">(VolleyError error)</span> </span>&#123;  </div><div class="line">          &#125;  </div><div class="line">      &#125;)&#123;  </div><div class="line">          <span class="meta">@Override</span>  </div><div class="line">          <span class="function"><span class="keyword">protected</span> Map&lt;String, String&gt; <span class="title">getParams</span><span class="params">()</span> <span class="keyword">throws</span> AuthFailureError </span>&#123;  </div><div class="line">              Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();  </div><div class="line">              map.put(<span class="string">"cityname"</span>,<span class="string">"朝阳"</span>);  </div><div class="line">              <span class="keyword">return</span> map;  </div><div class="line">          &#125;  </div><div class="line"></div><div class="line">          <span class="meta">@Override</span>  </div><div class="line">          <span class="function"><span class="keyword">public</span> Map&lt;String, String&gt; <span class="title">getHeaders</span><span class="params">()</span> <span class="keyword">throws</span> AuthFailureError </span>&#123;  </div><div class="line">              Map&lt;String,String&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();  </div><div class="line">              map.put(<span class="string">"apikey"</span>,<span class="string">"f71e5f1e08cd5a7e42a7e9aa70d22458"</span>);  </div><div class="line">              <span class="keyword">return</span> map;  </div><div class="line">          &#125;  </div><div class="line">      &#125;;  </div><div class="line">      mQueue.add(stringRequest);</div></pre></td></tr></table></figure></p>
+<p>stringRequest进行Post请求中如果需要携带Key-Value键值对，可以直接重写getParams()方法。<br>但是在JsonObjectRequest进行Post请求中如果需要携带Key-Value键值对，不能通过直接重写getParams()方法来实现。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/** </span></div><div class="line"><span class="comment"> * 不想自定义，非得用JsonObjectRequestPost不可，只要你不嫌麻烦。 </span></div><div class="line"><span class="comment"> */</span>  </div><div class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">jsonObjectRequestPostSuccess2</span><span class="params">()</span></span>&#123;  </div><div class="line">    String url = <span class="string">"http://route.showapi.com/213-3"</span>;  </div><div class="line">    Map&lt;String,String&gt; params = DummyData.getDummyData();  </div><div class="line">    <span class="keyword">final</span> String mRequestBody = appendParameter(url,params);  </div><div class="line">  </div><div class="line">    JsonObjectRequest jsonObjectRequest = <span class="keyword">new</span> JsonObjectRequest(Request.Method.POST,url,<span class="keyword">null</span>, <span class="keyword">new</span> Response.Listener&lt;JSONObject&gt;() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(JSONObject response)</span> </span>&#123;  </div><div class="line">            responseText.setText(response.toString());  </div><div class="line">        &#125;  </div><div class="line">    &#125;, <span class="keyword">new</span> Response.ErrorListener() &#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onErrorResponse</span><span class="params">(VolleyError error)</span> </span>&#123;  </div><div class="line">            responseText.setText(error.getMessage());  </div><div class="line">        &#125;  </div><div class="line">    &#125;)&#123;  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">getBodyContentType</span><span class="params">()</span> </span>&#123;  </div><div class="line">            <span class="keyword">return</span> <span class="string">"application/x-www-form-urlencoded; charset="</span> + getParamsEncoding();  </div><div class="line">        &#125;  </div><div class="line">  </div><div class="line">        <span class="meta">@Override</span>  </div><div class="line">        <span class="keyword">public</span> <span class="keyword">byte</span>[] getBody() &#123;  </div><div class="line">            <span class="keyword">try</span> &#123;  </div><div class="line">                <span class="keyword">return</span> mRequestBody == <span class="keyword">null</span> ? <span class="keyword">null</span> : mRequestBody.getBytes(PROTOCOL_CHARSET);  </div><div class="line">            &#125; <span class="keyword">catch</span> (UnsupportedEncodingException uee) &#123;  </div><div class="line">                VolleyLog.wtf(<span class="string">"Unsupported Encoding while trying to get the bytes of %s using %s"</span>,  </div><div class="line">                        mRequestBody, PROTOCOL_CHARSET);  </div><div class="line">                <span class="keyword">return</span> <span class="keyword">null</span>;  </div><div class="line">            &#125;  </div><div class="line">        &#125;  </div><div class="line">    &#125;;  </div><div class="line">    mQueue.add(jsonObjectRequest);  </div><div class="line">&#125;  </div><div class="line">  </div><div class="line"><span class="function"><span class="keyword">private</span> String <span class="title">appendParameter</span><span class="params">(String url,Map&lt;String,String&gt; params)</span></span>&#123;  </div><div class="line">    Uri uri = Uri.parse(url);  </div><div class="line">    Uri.Builder builder = uri.buildUpon();  </div><div class="line">    <span class="keyword">for</span>(Map.Entry&lt;String,String&gt; entry:params.entrySet())&#123;  </div><div class="line">        builder.appendQueryParameter(entry.getKey(),entry.getValue());  </div><div class="line">    &#125;  </div><div class="line">    <span class="keyword">return</span> builder.build().getQuery();  </div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;#####　Httpp(Volley)使用注意事项&lt;/p&gt;
+&lt;p&gt;#####JSONObjectRequest&lt;br&gt;一般JSONObjectRequest直接将Object放在构造函数里，是直接被放在了请求的Body（RequestB
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Volley 请求后台数据中文乱码问题解决</title>
+    <link href="http://yoursite.com/2017/08/03/Volley%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2017/08/03/Volley中文乱码问题/</id>
+    <published>2017-08-03T03:46:10.264Z</published>
+    <updated>2017-08-03T03:46:10.264Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<h4 id="Volley-请求后台数据中文乱码问题解决"><a href="#Volley-请求后台数据中文乱码问题解决" class="headerlink" title="Volley 请求后台数据中文乱码问题解决"></a>Volley 请求后台数据中文乱码问题解决</h4><p>Volley是Google家的网络框架，轻量简便，但是在使用过程中发现，部分接口存在中文乱码的问题，对，就是部分接口，而且经过检查发现获取的数据是<strong>iso-8859-1</strong>格式的（坑爹的试了很久），当时临时进行转换得到的。<br>java中字符串格式转换方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">resp = <span class="keyword">new</span> String(result.getBytes(<span class="string">"iso-8859-1"</span>), <span class="string">"UTF-8"</span>);</div></pre></td></tr></table></figure></p>
+<p><strong>问题：</strong><br>为什么后台说明是返回的<strong>UTF-8</strong>格式的数据，但是（最要命的就是但是，坑啊）获取到到的却是<strong>iso-8859-1</strong>？<br>通过查看Volley的源码，发现在StringRequest　，JsonObjectRequest<br>发现在StringRequest，JsonObjectRequest中都通过下面这个方法返回结果，其中对结果进行了处理<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">protected</span> Response&lt;String&gt; <span class="title">parseNetworkResponse</span><span class="params">(NetworkResponse response)</span> </span>&#123;</div><div class="line">       String parsed;</div><div class="line">       <span class="keyword">try</span> &#123;</div><div class="line">           parsed = <span class="keyword">new</span> String(response.data, HttpHeaderParser.parseCharset(response.headers));</div><div class="line">       &#125; <span class="keyword">catch</span> (UnsupportedEncodingException var4) &#123;</div><div class="line">           parsed = <span class="keyword">new</span> String(response.data);</div><div class="line">       &#125;</div><div class="line">       <span class="keyword">return</span> Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>关键来了有木有，发现其中同样利用了上面提到的格式转换方法，其中格式获取通过<strong>HttpHeaderParser.parseCharset(response.headers)</strong><br>我们继续看一下这个方法的代码，如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> String <span class="title">parseCharset</span><span class="params">(Map&lt;String, String&gt; headers)</span> </span>&#123;</div><div class="line">       String contentType = (String)headers.get(<span class="string">"Content-Type"</span>);</div><div class="line">       <span class="keyword">if</span>(contentType != <span class="keyword">null</span>) &#123;</div><div class="line">           String[] params = contentType.split(<span class="string">";"</span>);</div><div class="line"></div><div class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; params.length; ++i) &#123;</div><div class="line">               String[] pair = params[i].trim().split(<span class="string">"="</span>);</div><div class="line">               <span class="keyword">if</span>(pair.length == <span class="number">2</span> &amp;&amp; pair[<span class="number">0</span>].equals(<span class="string">"charset"</span>)) &#123;</div><div class="line">                   <span class="keyword">return</span> pair[<span class="number">1</span>];</div><div class="line">               &#125;</div><div class="line">           &#125;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       <span class="keyword">return</span> <span class="string">"ISO-8859-1"</span>;</div><div class="line">   &#125;</div></pre></td></tr></table></figure></p>
+<p>这个方法，目的是从结果的headers中获取编码格式，但有个前提就是后台必须给你明确了编码格式，如果后台没有明确编码格式，这个方法就会默认返回一个”ISO-8859-1”，比较坑爹啊。</p>
+<p><strong>解决方法</strong>，StringQuest和JsonObjectQuest处理方法一样，都可以重写parseNetworkResponse方法<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">   <span class="comment">//创建StringRequest</span></div><div class="line">StringRequest request = <span class="keyword">new</span> StringRequest(Request.Method.GET, url, <span class="keyword">new</span> Response.Listener&lt;String&gt;() &#123;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onResponse</span><span class="params">(String response)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mCallBack != <span class="keyword">null</span>) &#123;</div><div class="line">            mCallBack.onSuccess(response);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;, <span class="keyword">new</span> Response.ErrorListener() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onErrorResponse</span><span class="params">(VolleyError error)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (mCallBack != <span class="keyword">null</span>) &#123;</div><div class="line">            mCallBack.onError(error);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;)&#123;</div><div class="line">    <span class="function"><span class="keyword">protected</span> Response&lt;String&gt;  <span class="title">parseNetworkResponse</span><span class="params">(NetworkResponse response)</span></span></div><div class="line"><span class="function">    </span>&#123;</div><div class="line">        String parsed;</div><div class="line">        <span class="keyword">try</span> &#123;</div><div class="line">            parsed = <span class="keyword">new</span> String(response.data, <span class="string">"UTF-8"</span>);</div><div class="line">        &#125; <span class="keyword">catch</span> (UnsupportedEncodingException var4) &#123;</div><div class="line">            parsed = <span class="keyword">new</span> String(response.data);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> Response.success(parsed, HttpHeaderParser.parseCacheHeaders(response));</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">mQueue.add(request);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;h4 id=&quot;Volley-请求后台数据中文乱码问题解决&quot;&gt;&lt;a href=&quot;#Volley-请求后台数据中文乱码问题解决&quot; class=&quot;headerlink&quot; title=&quot;Volley 请求后台数据中文乱码问题解决&quot;&gt;&lt;/a&gt;Voll
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>一行代码实现Android的网络图片加载、点击查看大图、滑动放大、拖动、显示加载动画</title>
+    <link href="http://yoursite.com/2017/08/03/MySql%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://yoursite.com/2017/08/03/MySql命令行详解/</id>
+    <published>2017-08-03T03:45:56.120Z</published>
+    <updated>2017-08-03T03:45:56.120Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>####　一行代码实现Android的网络图片加载、点击查看大图、滑动放大、拖动、显示加载动画<br>图片的加载几乎是一款APP所必备的功能了，我们在处理图片基本会涉及到图片的网络加载、点击查看大图、能够拖动放大、滑动查看细节,同时希望在加载过程中还能有加载动画。<br>通过封装后，现在<strong>一条链式代码</strong>就能轻松实现上述所有需求,实现姿态就像使用Glide那样通过链式调用。<br><strong>举个栗子</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ImageLoaderManager.getInstance().load(mSmallUrl)</div><div class="line">                .setPlaceHolder(R.mipmap.ic_launcher)</div><div class="line">                .setBigUrl(mBigUrl)</div><div class="line">                .setIsCrossFade(<span class="keyword">true</span>)</div><div class="line">                .setIsSkipMemoryCache(<span class="keyword">true</span>)</div><div class="line">                .into(holder.mImg);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;####　一行代码实现Android的网络图片加载、点击查看大图、滑动放大、拖动、显示加载动画&lt;br&gt;图片的加载几乎是一款APP所必备的功能了，我们在处理图片基本会涉及到图片的网络加载、点击查看大图、能够拖动放大、滑动查看细节,同时希望
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>MPAndroidChart使用记录</title>
+    <link href="http://yoursite.com/2017/08/03/MPAndroidChart/"/>
+    <id>http://yoursite.com/2017/08/03/MPAndroidChart/</id>
+    <published>2017-08-03T03:45:51.217Z</published>
+    <updated>2017-08-03T03:45:51.217Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>#MPAndroidChart使用记录</p>
+<p>#####<a href="">概述</a></p>
+<p>#####<a href="">样例</a></p>
+<p>#####<a href="">特色设置</a></p>
+<p>####概述<br>MPAndoridChart提供了非常丰富的图表类型可供使用,如 BarChart、LineChart、PieChart、RadarChart<br>虽然不同图表实现不同，但是都遵循了相同的封装逻辑，每种图表涉及到的划分都是以下4个类的实体相互依赖来起作用。<br><br> <strong>核心类</strong><br> <br><br> <strong>XXXChart </strong>   (BarChart)<br><br> <strong>XXXData  </strong>   (BarDat)<br><br> <strong>XXXDataSet </strong> (BarDatSet)<br><br> <strong>XXXEntry </strong>   (BarEntry)<br><br> <br><br> 4个类之间的相互关系<br><br>  <strong>XXXChart</strong> =&gt; <strong>XXXData</strong> =&gt; <strong>XXXDataSet</strong> =&gt;      <strong>XXXEntry</strong> </p>
+<p>XXXChart 是图表类（也就是实际绘出图表的类） <br><br>XXXData 是数据类(XXXChart 直接依赖的数据封装类，是一个总的数据类) <br><br>XXXDataSet 是数据封装类（XXXData 依赖的一个组的数据封装类，XXXData 可以接受一个到多个 XXXDataSet，可以设置数据的形态等<br><br>XXXEntry 则是数据单元（）<br><br><br><br><strong>格式设置类</strong><br><br>YAxis、XAxis 是 XXXChart 的内部类，通过chart.getXAxis()方法来获取，可以设置X、Y的的显示内容，显示刻度，显示位置，标签颜色等</p>
+<p>####样例<br>   BarChart<br><br>  <img src="./mpandroid_barchart.png" alt="BarChart"> <br><br>  1、XML中引用BarChart<br></p>
+<pre><code>&lt;com.github.mikephil.charting.charts.BarChart
+android:id=&quot;@+id/mp_workshop1_left&quot;
+android:layout_width=&quot;match_parent&quot;
+android:layout_height=&quot;match_parent&quot; /&gt;
+</code></pre><p>  <br>  2、配置数据（元数据点）</p>
+<pre><code>@BindView(R.id.mp_workshop1_left)
+BarChart mLeftChart;
+//坐标点的组
+private List&lt;BarEntry&gt;  mBarEntries=new   ArrayList&lt;BarEntry&gt;();
+private BarDataSet mBarDataSet;
+private BarData mBarData;
+public void intView(){
+    for(int i=0;i&lt;10 ;i++){
+        mBarEntries.add(new BarEntry(i,i*10));
+    }
+    //将一组基本数据点封装到一个BarDataSet实例中，并设置标签
+    mBarDataSet=new BarDataSet(mBarEntries,&quot;生产数据&quot;);
+    //设置mBarDataSet中这组Bar的颜色
+    mBarDataSet.setColor(Color.rgb(70,130,180));
+    //将设置好的BarDataSet实例封装到一个BarData实例中，
+    mBarData=new BarData(mBarDataSet);
+    //给BarChart设置BarData
+    mLeftChart.setData(mBarData);
+    //绘制
+    mLeftChart.invalidate();
+}
+</code></pre><p> 3、设置X、Y轴格式</p>
+<pre><code>//从BarChart中获取XAxis、YAxis的实例
+YAxis leftAxis = mChart.getAxisLeft();
+YAxis rightAxis = mChart.getAxisRight();
+ XAxis xAxis = mChart.getXAxis();
+ //Y周起始位置为0
+leftAxis.setStartAtZero(true);
+rightAxis.setStartAtZero(true);
+
+xAxis.setAvoidFirstLastClipping(true);
+//X轴标签在下部
+xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+//自定义设置X轴标签
+xAxis.setValueFormatter(new IAxisValueFormatter() {
+    @Override
+    public String getFormattedValue(float value, AxisBase axis) {
+        if(value==1){
+            return &quot;周一&quot;;
+        }
+        if(value==2){
+            return &quot;周二&quot;;
+        }
+        if(value==3){
+            return &quot;周三&quot;;
+        }
+        if(value==4){
+            return &quot;周四&quot;;
+        }
+        if(value==5){
+            return &quot;周五&quot;;
+        }
+        if(value==6){
+            return &quot;周六&quot;;
+        }
+        if(value==6){
+            return &quot;周日&quot;;
+        }
+        return &quot;&quot;;
+    }
+});
+</code></pre><p>4、设置图表描述<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">　　　　Description md=<span class="keyword">new</span> Description();</div><div class="line">md.setText(<span class="string">"一次校验合格率"</span>);</div><div class="line">md.setTextColor(Color.rgb(<span class="number">139</span>, <span class="number">0</span>, <span class="number">0</span>));</div><div class="line">md.setTextSize(<span class="number">30</span>);<span class="comment">//单位是”像素”</span></div><div class="line">md.setPosition(<span class="number">500</span>,<span class="number">30</span>);<span class="comment">//单位是”像素”</span></div><div class="line">mChart.setDescription(md);</div></pre></td></tr></table></figure></p>
+<p>5、设置标签<br> 默认情况下，所有的图表类型都支持 Legend 且在设置图表数据后会自动生成 Legend 。<br>Legend 通常由一个标签的 形式/形状 来表示多个条目( entries ) 的每一个。<br>entries 数量自动生成的 legend 取决于DataSet 的标签 不同颜色的数量（在所有 DataSet 的对象）。 Legend 的标签取决于图表中所使用的 DataSet 对象。 如果没有为 DataSet 对象指定标签，图表将自动生成它们。 如果多个颜色用于一个 DataSet ，这些颜色分类 ，只通过一个标签说明。<br><br>对于定制的 Legend ，可以通过图表对象的 getLegend() 方法先获取 Legen 在进行调用对应方法：</p>
+<pre><code>Legend legend = chart.getLegend();
+</code></pre><p>   legend.setTextColor(Color.WHITE); //设置每个分组标签的颜色</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;#MPAndroidChart使用记录&lt;/p&gt;
+&lt;p&gt;#####&lt;a href=&quot;&quot;&gt;概述&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;#####&lt;a href=&quot;&quot;&gt;样例&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;#####&lt;a href=&quot;&quot;&gt;特色设置&lt;/a&gt;&lt;/p&gt;
+&lt;p
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2017/08/03/Java%E8%BF%90%E7%AE%97%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
+    <id>http://yoursite.com/2017/08/03/Java运算注意事项/</id>
+    <published>2017-08-03T03:45:27.605Z</published>
+    <updated>2017-08-03T03:45:27.605Z</updated>
+    
+    <content type="html"><![CDATA[<hr>
+<h2 id="title-Java运算注意事项"><a href="#title-Java运算注意事项" class="headerlink" title="title:Java运算注意事项"></a>title:Java运算注意事项</h2><a id="more"></a> 
+<p>#####java 两个整数相除保留两位小数</p>
+<p>java中，当两个整数相除时，由于小数点以后的数字会被截断，运算结果将为整数，此时若希望得到运算结果为浮点数，必须将两整数其一或是两者都强制转换为浮点数。<br>例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">float</span>)a/b <span class="comment">// 将整数其中一个强制转换为浮点数，再与另一个整数相除</span></div><div class="line">a/(<span class="keyword">float</span>)b</div><div class="line">(<span class="keyword">float</span>)a/(<span class="keyword">float</span>)b <span class="comment">// 将两个整数同时强制转换为浮点数后再相除</span></div><div class="line">Java代码  </div><div class="line"><span class="keyword">float</span> num= (<span class="keyword">float</span>)<span class="number">2</span>/<span class="number">3</span>;   </div><div class="line">DecimalFormat df = <span class="keyword">new</span> DecimalFormat(<span class="string">"0.00"</span>);<span class="comment">//格式化小数   </span></div><div class="line">String s = df.format(num);<span class="comment">//返回的是String类型 </span></div><div class="line"><span class="keyword">double</span> data=<span class="number">5</span>/<span class="number">3</span>;　　<span class="comment">//data =1</span></div><div class="line"><span class="keyword">float</span> data2=<span class="number">5</span>/<span class="number">3</span>;  <span class="comment">//data2=1</span></div><div class="line"></div><div class="line"><span class="keyword">double</span> data3=(<span class="keyword">double</span>) <span class="number">5</span>/<span class="number">3</span> <span class="comment">//data3=1.6666666666666667</span></div><div class="line"><span class="keyword">double</span> data3= <span class="number">5</span>/<span class="number">3</span>d        <span class="comment">//data3=1.6666666666666667</span></div><div class="line"><span class="keyword">float</span> data4=(<span class="keyword">float</span>) <span class="number">5</span>/<span class="number">3</span>   <span class="comment">//data4=1.6666666</span></div><div class="line"><span class="keyword">float</span> data5= <span class="number">5</span>/<span class="number">3f</span>         <span class="comment">//data5=1.6666666</span></div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;hr&gt;
+&lt;h2 id=&quot;title-Java运算注意事项&quot;&gt;&lt;a href=&quot;#title-Java运算注意事项&quot; class=&quot;headerlink&quot; title=&quot;title:Java运算注意事项&quot;&gt;&lt;/a&gt;title:Java运算注意事项&lt;/h2&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java运算注意事项</title>
+    <link href="http://yoursite.com/2017/08/03/Java%E6%B3%9B%E5%9E%8B%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://yoursite.com/2017/08/03/Java泛型详解/</id>
+    <published>2017-08-03T03:45:20.990Z</published>
+    <updated>2017-08-03T03:45:20.990Z</updated>
+    
+    <content type="html"><![CDATA[<p>###Java泛型<br>在Java开发中，泛型是我们非常频繁使用的知识，它常常与集合一起结伴。<br>泛型是在ＪＤＫ１．５出现的。<br><br><strong>为什么需要它？</strong><br><br>编译期检查，参数化.<br>我们以集合Ｌｉｓｔ为例<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List             mList;</div><div class="line">List&lt;String&gt;     mListByString ;</div></pre></td></tr></table></figure></p>
+<p>一个是原始的集合Ｌｉｓｔ，一个是泛型化的Ｌｉｓｔ<br>（泛型是在ＪＤＫ１．５出现，官方推荐从那时起尽量使用泛型化的集合，但原生的集合依然可以使用Ｌｉｓｔ、Ｓｅｔ，主要是为了向前兼容，业界已经存在了大量使用原生集合的代码）<br><br>那么上面的两种不同格式有何区别？<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mList.add(<span class="string">"123"</span>);   　　　　　<span class="comment">//正常</span></div><div class="line">mList.add(<span class="number">123</span>);   　　　　　　<span class="comment">//正常</span></div><div class="line"></div><div class="line">mListByString.add(<span class="string">"123"</span>);　　<span class="comment">//正常</span></div><div class="line">mListByString.add(<span class="number">123</span>);     <span class="comment">//编译报错</span></div></pre></td></tr></table></figure></p>
+<p>上面我分别往mList和mListByString添加一个String和一个int,添加了２个类型不同的值，<br><br>当然正常情况下，我们可能只希望添加String类型的值，但无意中就像样例中一样添加了一个ｉｎｔ类型的值。其中原生Ｌｉｓt编译正常，而以String 为参数的泛型List则在编译时报错。</p>
+<p>下面是我们在其他地方使用上面两个Ｌｉｓｔ<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String name1=mList.get(<span class="number">0</span>);</div><div class="line">String name2=mList.get(<span class="number">1</span>);</div><div class="line"></div><div class="line">String name3=mListByString.get(<span class="number">0</span>);</div><div class="line">String name4=mListByString.get(<span class="number">1</span>);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###Java泛型&lt;br&gt;在Java开发中，泛型是我们非常频繁使用的知识，它常常与集合一起结伴。&lt;br&gt;泛型是在ＪＤＫ１．５出现的。&lt;br&gt;&lt;br&gt;&lt;strong&gt;为什么需要它？&lt;/strong&gt;&lt;br&gt;&lt;br&gt;编译期检查，参数化.&lt;br&gt;我们以集合Ｌｉｓｔ为例&lt;br&gt;&lt;b
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android Studio使用记录</title>
+    <link href="http://yoursite.com/2017/08/03/AndroidStudio%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/"/>
+    <id>http://yoursite.com/2017/08/03/AndroidStudio使用记录/</id>
+    <published>2017-08-03T03:44:27.975Z</published>
+    <updated>2017-08-03T03:44:27.975Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>#####Android Studio使用记录<br> 解决External file changes sync may be slow: The current inotify(7) watch limit is too low. More details. (show balloon)<br> s<br>sudo sysctl fs.inotify.max_user_watches=5242881</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;#####Android Studio使用记录&lt;br&gt; 解决External file changes sync may be slow: The current inotify(7) watch limit is too low. M
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android Sdk版本问题</title>
+    <link href="http://yoursite.com/2017/08/03/AndroidSDK%E7%89%88%E6%9C%AC%E4%B8%AD%E6%96%B9%E6%B3%95/"/>
+    <id>http://yoursite.com/2017/08/03/AndroidSDK版本中方法/</id>
+    <published>2017-08-03T03:44:22.824Z</published>
+    <updated>2017-08-03T03:44:22.824Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<p>####Android Sdk版本问题<br>（１）<br>Notification notification2 = new Notification(R.mipmap.icon_demo, “通知测试”, System.currentTimeMillis());<br>notification2.setLatestEventInfo(getActivity(),”testTitle”,”testContent”,null);</p>
+<p>结果androidstudio报错，setLatestEventInfo该方法找不到，实际上该方法存在于源码中</p>
+<p>FloatMath<br>Android6.0使用 Math.floor 代替 FloatMath.floor 即可，见下图：</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;p&gt;####Android Sdk版本问题&lt;br&gt;（１）&lt;br&gt;Notification notification2 = new Notification(R.mipmap.icon_demo, “通知测试”, System.current
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android中文乱码问题</title>
+    <link href="http://yoursite.com/2017/08/03/AndroidHttp%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2017/08/03/AndroidHttp中文乱码问题/</id>
+    <published>2017-08-03T03:44:17.644Z</published>
+    <updated>2017-08-03T03:44:17.644Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a> 
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">URL url = <span class="keyword">new</span> URL(RequestURL);</div><div class="line">HttpURLConnection conn = (HttpURLConnection) url.openConnection();</div><div class="line"></div><div class="line">InputStream input = conn.getInputStream();</div><div class="line">StringBuffer sb1 = <span class="keyword">new</span> StringBuffer();</div><div class="line"><span class="keyword">int</span> ss;</div><div class="line"><span class="keyword">while</span> ((ss = input.read()) != -<span class="number">1</span>) &#123;</div><div class="line">	sb1.append((<span class="keyword">char</span>) ss);</div><div class="line">result = sb1.toString();</div></pre></td></tr></table></figure>
+<p>在这样的操作下，有可能会出现接收到的中文是乱码的，比如后台返回的格式是”UTF-8”，接收到的中文就会是乱码</p>
+<p>解决方法进行转码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">InputStream input = conn.getInputStream();</div><div class="line">InputStreamReader reader=<span class="keyword">new</span> InputStreamReader(input,<span class="string">"UTF-8"</span>);</div><div class="line">StringBuffer sb1 = <span class="keyword">new</span> StringBuffer();</div><div class="line"><span class="keyword">int</span> ss;</div><div class="line"><span class="keyword">while</span> ((ss = reader.read()) != -<span class="number">1</span>) &#123;</div><div class="line">	sb1.append((<span class="keyword">char</span>) ss);</div><div class="line">result = sb1.toString();</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
+&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div 
     
     </summary>
     

@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Baronli" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="###Android开发错误集锦 #####NULLPoint空指针Activity生命周期结束，导致其中的持有Actiｖity引用的定时任务的引用变为ｎｕｌｌ。 #####ClassCastException多出现在强制类型转变上 ####命令行启动avd在tools的目录下   ./emulator -netdelay none -netspeed full -avd Nexus23可能报错">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android开发错误集锦">
+<meta property="og:url" content="http://yoursite.com/2017/08/03/开发错误集锦/index.html">
+<meta property="og:site_name" content="Baronli">
+<meta property="og:description" content="###Android开发错误集锦 #####NULLPoint空指针Activity生命周期结束，导致其中的持有Actiｖity引用的定时任务的引用变为ｎｕｌｌ。 #####ClassCastException多出现在强制类型转变上 ####命令行启动avd在tools的目录下   ./emulator -netdelay none -netspeed full -avd Nexus23可能报错">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-08-03T03:33:11.531Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Android开发错误集锦">
+<meta name="twitter:description" content="###Android开发错误集锦 #####NULLPoint空指针Activity生命周期结束，导致其中的持有Actiｖity引用的定时任务的引用变为ｎｕｌｌ。 #####ClassCastException多出现在强制类型转变上 ####命令行启动avd在tools的目录下   ./emulator -netdelay none -netspeed full -avd Nexus23可能报错">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/08/03/开发错误集锦/"/>
+
+
+
+
+
+  <title>Android开发错误集锦 | Baronli</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Baronli</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/开发错误集锦/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Android开发错误集锦</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:33:11+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>###Android开发错误集锦</p>
+<p>#####NULLPoint空指针<br>Activity生命周期结束，导致其中的持有Actiｖity引用的定时任务的引用变为ｎｕｌｌ。</p>
+<p>#####ClassCastException<br>多出现在强制类型转变上</p>
+<p>####命令行启动avd<br>在tools的目录下   ./emulator -netdelay none -netspeed full -avd Nexus23<br>可能报错   </p>
+<p>####./emulator -netdelay none -netspeed full -avd api25</p>
+<p>emulator: ERROR: This AVD’s configuration is missing a kernel file! Please ensure the file “kernel-ranchu” is in the same location as your system image.<br>emulator: ERROR: ANDROID_SDK_ROOT is undefined</p>
+<p>解决方法 ：给root添加<br>export PATH=/home/stormbaron/android-sdk-linux/platform-tools/:$PATH</p>
+<p>####新的问题<br> libGL error: unable to load driver: i965_dri.so<br>libGL error: driver pointer missing<br>libGL error: failed to load driver: i965<br>libGL error: unable to load driver: i965_dri.so<br>libGL error: driver pointer missing<br>libGL error: failed to load driver: i965<br>libGL error: unable to load driver: swrast_dri.so<br>libGL error: failed to load driver: swrast<br>X Error of failed request:  GLXBadContext<br>  Major opcode of failed request:  155 (GLX)<br>  Minor opcode of failed request:  6 (X_GLXIsDirect)<br>  Serial number of failed request:  55<br>  Current serial number in output stream:  54<br>emulator: ERROR: This AVD’s configuration is missing a kernel file! Please ensure the file “kernel-ranchu” is in the same location as your system image.<br>emulator: ERROR: ANDROID_SDK_ROOT is undefined<br>解决方法<br> Rather than launching the emulator from Android Studio, open the terminal and cd into the tools directory withing your Android SDK directory - mine is ~/Android/Sdk/tools. From there run the command:<br></p>
+<p>LD_PRELOAD=’/usr/$LIB/libstdc++.so.6’ DISPLAY=:0 ./emulator -avd <insert avd="" name="" here="">    </insert></p>
+<p>###Android错误</p>
+<p>####Spinner点击item无反应<br>原因：adapter的list来源于异步线程执行的网络请求，可能导致adpter异常，将list换成一个固定的列表值后正常。</p>
+<h4 id="The-error-of-install-apk"><a href="#The-error-of-install-apk" class="headerlink" title="The error of install apk"></a>The error of install apk</h4><p><em>INSTALL_FAILED_NO_MATCHING_ABIS</em>  is when you are trying to install an app that has native libraries and it doesn’t have a native library for your cpu architecture. For example if you compiled an app for armv7 and are trying to install it on an emulator that uses the Intel architecture instead it will not work.　　</p>
+<p>#####java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState</p>
+<p>###Android Studio</p>
+<p>#####多个Module依赖了相同的第三方包，在打包编译时会爆出重复的错误。<br>涉及compile,provided,apk之间的区别，compile是指该第三方包始终被需要（编译、打包、发布、测试）<br>provided是指该第三方包编译时需要，不会被打包进apk中</p>
+<p>####java.lang.SecurityException: MODE_WORLD_READABLE no longer supported<br>在新版本7.0的Android API中在进行getSharedPreferences时不再支持<br>4中模式：</p>
+<p>四种模式，分别为：<br>Context.MODE_PRIVATE    = 0<br>Context.MODE_APPEND    = 32768<br>Context.MODE_WORLD_READABLE = 1<br>Context.MODE_WORLD_WRITEABLE = 2<br>7.0后<br>代码调用，存放在data/data/包名/xxx<br>目录下的文件设置<br>Context.MODE_WORLD_READABLE = 1<br>Context.MODE_WORLD_WRITEABLE = 2<br>会抛安全异常！！！</p>
+<p>改用<br>MODE_PRIVATE</p>
+<h4 id="android-database-sqlite-SQLiteException-table-videoinfo-table-already-exists-code-1-while-compiling-create-table-videoinfo-table-id-integer-primary-key-autoincrement-title-text-path-text-imagePath-text-size-real-position-real-duration-real"><a href="#android-database-sqlite-SQLiteException-table-videoinfo-table-already-exists-code-1-while-compiling-create-table-videoinfo-table-id-integer-primary-key-autoincrement-title-text-path-text-imagePath-text-size-real-position-real-duration-real" class="headerlink" title="android.database.sqlite.SQLiteException: table videoinfo_table already exists (code 1): , while compiling: create table videoinfo_table(_id integer primary key autoincrement,title text,path text,imagePath text,size real,position real,duration real)"></a>android.database.sqlite.SQLiteException: table videoinfo_table already exists (code 1): , while compiling: create table videoinfo_table(_id integer primary key autoincrement,title text,path text,imagePath text,size real,position real,duration real)</h4><p>####Android studio 打包<br>Error:(11) Error: “main_title” is not translated in “en” (English) [MissingTranslation]<br>Error:Execution failed for task ‘:app:lintVitalRelease’.</p>
+<blockquote>
+<p>Lint found fatal errors while assembling a release target.<br>  To proceed, either fix the issues identified by lint, or modify your build script as follows:<br>  …<br>  android {<br>      lintOptions {<br>          checkReleaseBuilds false<br>          // Or, if you prefer, you can continue to check for errors in release builds,<br>          // but continue the build even when errors are found:<br>          abortOnError false<br>      }<br>  }<br>  …<br>在打包的时候String.xml 中出现了问题<br>在build.gradle<br>   //添加如下配置就ok了<br>    lintOptions {<br>        checkReleaseBuilds false<br>        abortOnError false<br>    }</p>
+</blockquote>
+<p>####Adb 安装APK时报错<br>打开cmd 跳转到adb.exe所在的目录文件夹下 （D:\android-sdk-windows\platform-tools）：<br>adb install  abc.apk(如果此apk没有在当前目录下，还需要带上绝对路径，否则无法找到此apk)<br>这些错误基本是在 cmd 命令行安装时遇到的。</p>
+<p>INSTALL_FAILED_ALREADY_EXISTS                 程序已经存在<br>INSTALL_FAILED_INVALID_APK                     无效的APK<br>INSTALL_FAILED_INVALID_URI                     无效的链接<br>INSTALL_FAILED_INSUFFICIENT_STORAGE          没有足够的存储空间<br>INSTALL_FAILED_DUPLICATE_PACKAGE             已存在同名程序<br>INSTALL_FAILED_NO_SHARED_USER                要求的共享用户不存在<br>INSTALL_FAILED_UPDATE_INCOMPATIBLE           版本不能共存<br>INSTALL_FAILED_SHARED_USER_INCOMPATIBLE     需求的共享用户签名错误<br>INSTALL_FAILED_MISSING_SHARED_LIBRARY       需求的共享库已丢失<br>INSTALL_FAILED_REPLACE_COULDNT_DELETE      需求的共享库无效<br>INSTALL_FAILED_DEXOPT                          dex优化验证失败<br>INSTALL_FAILED_OLDER_SDK                      系统版本过旧<br>INSTALL_FAILED_CONFLICTING_PROVIDER          存在同名的内容提供者<br>INSTALL_FAILED_NEWER_SDK                      系统版本过新<br>INSTALL_FAILED_TEST_ONLY                      调用者不被允许测试的测试程序<br>INSTALL_FAILED_CPU_ABI_INCOMPATIBLE         包含的本机代码不兼容<br>CPU_ABIINSTALL_FAILED_MISSING_FEATURE       使用了一个无效的特性<br>INSTALL_FAILED_CONTAINER_ERROR              SD卡访问失败<br>INSTALL_FAILED_INVALID_INSTALL_LOCATION     无效的安装路径<br>INSTALL_FAILED_MEDIA_UNAVAILABLE            SD卡不存在<br>INSTALL_FAILED_INTERNAL_ERROR                系统问题导致安装失败<br>DEFAULT                                          未知错误</p>
+<p>####Fragment相关</p>
+<p>######(1)java.lang.IllegalStateException异常产生的原因及解决办法<br>Can not perform this action after onSaveInstanceState<br><br>错误类型大致为以下几种：<br>java.lang.IllegalStateException：Cannot   forward   a   response   that   is   already   committed <br><br>IllegalStateException：response already commited <br><br>IllegalStateException：getOutputStream() has already been called for this request<br>…..<br><br>IllegalStateException: Can not perform this action after onSaveInstanceState：<br><br><strong>解决办法</strong>：onSaveInstanceState方法是在该Activity即将被销毁前调用，来保存Activity数据的，如果在保存完状态后<br>再给它添加Fragment就会出错。解决办法就是把commit（）方法替换成 commitAllowingStateLoss()</p>
+<p>######(２)java.lang.IllegalStateException<br>Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 1 column 37 path $.data<br><br>错误原因：该异常是由于服务器错误返回的JSON字符串和服务器正常下时返回的JSON字符串结构不同,导致利用Gson解析的时候报了一个异常:本该去解析集合却强制去解析对象所致.<br>解决办法:在使用Gson解析JSON时try cash一下,不报错按照正常逻辑继续解析,报异常则处理为请求失败逻辑即可.</p>
+<p>######(3)FATAL EXCEPTION: main Process: com.julit.elevator_maint, PID: 2158<br>java.lang.RuntimeException: Unable to instantiate application<br> com.juli.elevator_ivms.app.DemoApp: java.lang.ClassNotFoundException: Didn’t find class “com.juli.elevator_ivms.app.DemoApp” on path: DexPathList[[zip file “/data/app/com.julit.elevator_maint-1/base.apk”],nativeLibraryDirectories=[/data/app/com.julit.elevator_maint-1/lib/arm, /data/app/com.julit.elevator_maint-1/base.apk!/lib/armeabi-v7a, /vendor/lib, /system/lib]]</p>
+<p> ######(4)错误：Error:Execution failed for task ‘:app:mergeDebugResources’.</p>
+<blockquote>
+<p>Some file crunching failed, see logs for details</p>
+</blockquote>
+<p>原因：这是图片格式错了</p>
+<p>解决：不要把图片的后缀直接修改为.png</p>
+<p>######(4)ERROR: 9-patch image<br>项目中有9-patch用ant脚本来编译的时候有错，如果直接用eclipse打包就没有问题<br> ERROR: 9-patch image /home/stormbaron/work/GitProject/Company/JuliSale_AS/app/src/main/res/drawable-hdpi/search_bar_edit_pressed.9.png malformed.<br>AAPT:        Frame pixels must be either solid or transparent (not intermediate alphas).<br>AAPT:        Found at pixel #15 along top edge.</p>
+<p>解决方案　：那张图有问题，.9.png图，顶部和左侧必须要设置拉伸区域（右侧和底部可以不设置）否则会报错</p>
+<p>######(５)<br> Execution failed for task ‘:app:transformResourcesWithMergeJavaResForDebug’.</p>
+<blockquote>
+<p>com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/LICENSE<br>      File1: /home/stormbaron/work/GitProject/Company/JuliSale_AS/app/libs/httpclient-4.3.1.jar<br>      File2: /home/stormbaron/work/GitProject/Company/JuliSale_AS/app/libs/httpcore-4.3.jar<br>貌似说两个包里面的文件重复了还是怎么的，谷歌了一番之后据说应该是 android studio 自身的bug<br>解决办法：<br>打开项目下面的 build.gradle 文件，在 android 代码块中添加下面代码<br>[sql] view plain copy<br>android {<br>    packagingOptions {<br>        exclude ‘META-INF/DEPENDENCIES’<br>        exclude ‘META-INF/NOTICE’<br>        exclude ‘META-INF/LICENSE’<br>        exclude ‘META-INF/LICENSE.txt’<br>        exclude ‘META-INF/NOTICE.txt’<br>    }<br>}  </p>
+</blockquote>
+<p>将这些文件全部排出掉就ok了</p>
+<p>git init 产生的目录解释<br>error: src refspec master does not match any.<br>引起该错误的原因是，目录中没有文件，空目录是不能提交上去的</p>
+<p>####网络权限问题（6.0之后的申请）<br>所有需要使用的权限都必须在Mainfest中进行申明，6.0以后的动态获取，只是针对你所申明的权限做的一个授权，如果你在Mainfest中没有进行申明的话，动态权限的框不会显示</p>
+<p>####Java Method Call Expected<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">incListener</span></span>&#123;&#125;</div><div class="line"><span class="comment">//报错的使用</span></div><div class="line">increase.addActionListener(incListener());</div><div class="line"><span class="comment">//正确的使用</span></div><div class="line">increase.addActionListener(<span class="keyword">new</span> incListener());</div></pre></td></tr></table></figure></p>
+<p>#####Android studio在使用打包时（buildToolsVersion）<br>Error:In <declare-styleable> ConstraintSet, unable to find attribute android:elevation<br>　　　这个问题主要和api的版本问题有关(原本是20报错，改成21后正常)<br>    compileSdkVersion 21<br>    buildToolsVersion “25.0.1”</declare-styleable></p>
+<p>####Activity与Fragment需要相匹配</p>
+<p>android.view.InflateException: Binary XML file line #9: Error inflating class fragment</p>
+<p>当我们用的Activity时</p>
+<p>应当  import android.app.Fragment.</p>
+<p>当我们用的FragmentActivity 或者appcompatactivity(待验证)</p>
+<p>应当 import android.support.v4.app.Fragment</p>
+<p>否则在Activity是无法识别android.support.v4.app.Fragment的</p>
+<p>####Fragment导致的空指针<br>java.lang.NullPointerException</p>
+<p>Attempt to write to field ‘int android.support.v4.app.Fragment.mNextAnim’ on a null object reference</p>
+<p>一个原因导致：在fragment为null的时候show或hide或remove了。所以在对Fragment进行操作前一定要进行判断。</p>
+<p>#####Gson错误<br>java.lang.IllegalStateException: Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 1 column 2 path $<br>分析原因：在使用解析之前要先分析后台返回的是一个object还是一个array</p>
+<p>#####Retrofit错误<br> java.lang.IllegalStateException: Already executed.<br> at retrofit2.OkHttpCall.enqueue(OkHttpCall.java:84)<br><br>原因：多次执行call.enqueue</p>
+<p>java.lang.IllegalArgumentException: baseUrl must end in /: <a href="http://erp.joylive.com:10030/service.json" target="_blank" rel="external">http://erp.joylive.com:10030/service.json</a></p>
+<p>java.lang.IllegalArgumentException: Unable to create call adapter for interface retrofit2.Call<br>=0  WEBRESENDSEGS=0  WEBRECVSEGS=1  WEBERRSEGS=0  WEBOUTRSTS=0  WEBESTABLISRST=0  WEBRTTDURATION=0  WEBRTTSEGS=0  WEBSNDDUPACKS=0  suckTimes=0 recovage_times=5]</p>
+<p>####Android页面错误<br>android.view.WindowLeaked: Activity com.suda.julisale.utils.ImageGetActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView{4333be18 V.E….. R……D 0,0-684,192} that was originally added here</p>
+<p>多次调用Dialog的hide</p>
+<p>####调用Intent时，需要显性声明，否则报错（5.0系统以后）<br>java.lang.IllegalArgumentException:Service Intent must be explicit: Intent { act=com.easi.mobile.locator.MobileLocatorService }</p>
+<p>public class ShutdownBroadcastReceiver extends BroadcastReceiver {  </p>
+<pre><code>private static final String ACTION_SHUTDOWN = &quot;android.intent.action.ACTION_SHUTDOWN&quot;;  
+
+@Override  
+public void onReceive(Context context, Intent intent) {
+
+    if (intent.getAction().equals(ACTION_SHUTDOWN)) {
+
+
+        SharedPreferences sp = context.getSharedPreferences(&quot;MobileLocator&quot;, Context.MODE_PRIVATE);  
+        sp.edit().putString(&quot;instruct&quot;, &quot;exit&quot;).commit();  
+
+        context.stopService(new Intent(PushGpsInfoService.ACTION_MOBILE_LOCATOR_SERVICE));
+    }  
+
+}  
+</code></pre><p>}  </p>
+<h4 id="Drawerlayout在代码中控制打开和关闭时报错"><a href="#Drawerlayout在代码中控制打开和关闭时报错" class="headerlink" title="Drawerlayout在代码中控制打开和关闭时报错"></a>Drawerlayout在代码中控制打开和关闭时报错</h4><p>   java.lang.IllegalArgumentException: No drawer view found with gravity LEFT<br>   解决办法:<br>   除了上面那段代码以外，还要在xml中，抽屉部分中增加：</p>
+<p> android:layout_gravity=”left”</p>
+<p>####org.json.JSONException: End of input at character 0 of<br>Json在获取时，对应是空值</p>
+<h4 id="Glide错误"><a href="#Glide错误" class="headerlink" title="Glide错误"></a>Glide错误</h4><p>E/dex2oat: Failed to create oat file: /data/dalvik-cache/x86/data@app@com.example.stormbaron.agank-2@split_lib_dependencies_apk.apk@classes.dex: Permission denied</p>
+<p>####Rxjava 使用时可能遇到的问题　Duplicate files copied in APK META-INF/rxjava.properties<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Error:Execution failed for task ':app:transformResourcesWithMergeJavaResForDebug'. &gt; com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/rxjava.properties     File1: /home/stormbaron/.android/build-cache/79c3bd52eead62f9651d4f1445d26e97af7ad05b/output/jars/classes.jar     File2: /home/stormbaron/work/gradle-3.4/caches/modules-2/files-2.1/io.reactivex/rxjava/1.0.14/898f9ab61e2a23afd615f0b0389478bec86f49f9/rxjava-1.0.14.jar</div></pre></td></tr></table></figure></p>
+<p>可用的解决方法：<br>  packagingOptions {<br>        exclude ‘META-INF/rxjava.properties’<br>    }</p>
+<h4 id="当Glide正在对某个View进行操作时，如果进行setTag操作会报错"><a href="#当Glide正在对某个View进行操作时，如果进行setTag操作会报错" class="headerlink" title="当Glide正在对某个View进行操作时，如果进行setTag操作会报错"></a>当Glide正在对某个View进行操作时，如果进行setTag操作会报错</h4><p>java.lang.IllegalArgumentException: You must not call setTag() on a view Glide is targeting</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/03/hello-world/" rel="next" title="Hello World">
+                <i class="fa fa-chevron-left"></i> Hello World
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/03/百度地图使用记录/" rel="prev" title="百度地图使用">
+                百度地图使用 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/uploads/icon.jpg"
+               alt="Baronli" />
+          <p class="site-author-name" itemprop="name">Baronli</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#The-error-of-install-apk"><span class="nav-number">1.</span> <span class="nav-text">The error of install apk</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#android-database-sqlite-SQLiteException-table-videoinfo-table-already-exists-code-1-while-compiling-create-table-videoinfo-table-id-integer-primary-key-autoincrement-title-text-path-text-imagePath-text-size-real-position-real-duration-real"><span class="nav-number">2.</span> <span class="nav-text">android.database.sqlite.SQLiteException: table videoinfo_table already exists (code 1): , while compiling: create table videoinfo_table(_id integer primary key autoincrement,title text,path text,imagePath text,size real,position real,duration real)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Drawerlayout在代码中控制打开和关闭时报错"><span class="nav-number">3.</span> <span class="nav-text">Drawerlayout在代码中控制打开和关闭时报错</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Glide错误"><span class="nav-number">4.</span> <span class="nav-text">Glide错误</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#当Glide正在对某个View进行操作时，如果进行setTag操作会报错"><span class="nav-number">5.</span> <span class="nav-text">当Glide正在对某个View进行操作时，如果进行setTag操作会报错</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2016 - 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Baronli</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

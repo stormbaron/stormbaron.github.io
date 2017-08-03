@@ -84,7 +84,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml" />
+  <link rel="alternate" href="/atom.xml" title="Baronli" type="application/atom+xml" />
 
 
 
@@ -97,12 +97,12 @@
 
 
 <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Baronli">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Baronli">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="Baronli">
 
 
 
@@ -137,7 +137,7 @@
 
 
 
-  <title>Hexo</title>
+  <title>Baronli</title>
   
 
 
@@ -175,7 +175,7 @@
     <div class="custom-logo-site-title">
       <a href="/"  class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Hexo</span>
+        <span class="site-title">Baronli</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -210,22 +210,22 @@
         </li>
       
         
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
         <li class="menu-item menu-item-archives">
           <a href="/archives/" rel="section">
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
             归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
           </a>
         </li>
       
@@ -262,16 +262,16 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/02/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/MySql命令/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="John Doe">
+      <meta itemprop="name" content="Baronli">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="image" content="/uploads/icon.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
+      <meta itemprop="name" content="Baronli">
     </span>
 
     
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/02/hello-world/" itemprop="url">Hello World</a></h1>
+                <a class="post-title-link" href="/2017/08/03/MySql命令/" itemprop="url">Linux终端操作MySQL常用命令</a></h1>
         
 
         <div class="post-meta">
@@ -293,8 +293,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-02T17:23:41+08:00">
-                2017-08-02
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:22:44+08:00">
+                2017-08-03
               </time>
             
 
@@ -333,15 +333,1397 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+            <a id="more"></a> 
+<p> Linux终端操作MySQL常用命令<br>1.终端启动 MySQL：/etc/init.d/mysql start</p>
+<p> 2.登录 MySQL：mysql -uroot -p (用 root 账户登录),然后输入密码 </p>
+<p>3.查看所有的数据库名字：show databases; </p>
+<p>4.选择一个数据库操作： use database_name; </p>
+<p>5.查看当前数据库下所有的表名：show tables; </p>
+<p>6.创建一个数据库：create database database_name; </p>
+<p>7.删除一个数据库：drop database database_name; </p>
+<p>8.创建一个表: create table mytest( uid bigint(20) not null primary key, uname varchar(20) not null); </p>
+<p>9.删除一个表: drop table mytest; </p>
+<p>10.SQL 插入语句：insert into table_name(col1,col2) values(value1,value2); </p>
+<p>11.SQL 更新语句：update table_name set col1=’value1’,col2=’value2’ where where_definition; </p>
+<p>12.SQL 查询语句：select * from table_name where…….</p>
+<p>13.SQL 删除语句：delete from table_name where… </p>
+<p>14.增加表结构的字段：alert table table_name add column field1 date ,add column field2 time… </p>
+<p>15.删除表结构的字段：alert table table_name drop field1; </p>
+<p>16.查看表的结构：show columns from table_name; </p>
+<p>17.limit 的使用：select * from table_name limit 3;   //每页只显示 3 行 </p>
+<p>select * from table_name limit 3,4;   //从查询结果的第三个开始，显示四项结果。 此处可很好的用来作分页处理。 </p>
+<p>18.对查询结果进行排序: select * from table_name order by field1,orderby field2;多重排序 </p>
+<p>19.退出 MySQL:exit; </p>
+<p>20.删除表中所有数据： truncate table 数据表名称 （不可恢复） Linux终端操作MySQL常用命令<br>2015-09-20 12:29 6368人阅读 评论(1) 收藏 举报<br> 分类： Linux（3）<br>1.终端启动 MySQL：/etc/init.d/mysql start</p>
+<p> 2.登录 MySQL：mysql -uroot -p (用 root 账户登录),然后输入密码 </p>
+<p>3.查看所有的数据库名字：show databases; </p>
+<p>4.选择一个数据库操作： use database_name; </p>
+<p>5.查看当前数据库下所有的表名：show tables; </p>
+<p>6.创建一个数据库：create database database_name; </p>
+<p>7.删除一个数据库：drop database database_name; </p>
+<p>8.创建一个表: create table mytest( uid bigint(20) not null primary key, uname varchar(20) not null); </p>
+<p>9.删除一个表: drop table mytest; </p>
+<p>10.SQL 插入语句：insert into table_name(col1,col2) values(value1,value2); </p>
+<p>11.SQL 更新语句：update table_name set col1=’value1’,col2=’value2’ where where_definition; </p>
+<p>12.SQL 查询语句：select * from table_name where…….</p>
+<p>13.SQL 删除语句：delete from table_name where… </p>
+<p>14.增加表结构的字段：alert table table_name add column field1 date ,add column field2 time… </p>
+<p>15.删除表结构的字段：alert table table_name drop field1; </p>
+<p>16.查看表的结构：show columns from table_name; </p>
+<p>17.limit 的使用：select * from table_name limit 3;   //每页只显示 3 行 </p>
+<p>select * from table_name limit 3,4;   //从查询结果的第三个开始，显示四项结果。 此处可很好的用来作分页处理。 </p>
+<p>18.对查询结果进行排序: select * from table_name order by field1,orderby field2;多重排序 </p>
+<p>19.退出 MySQL:exit; </p>
+<p>20.删除表中所有数据： truncate table 数据表名称 （不可恢复）</p>
+<p>linux下导入、导出mysql数据库命令</p>
+<p>一、导出数据库用mysqldump命令（注意mysql的安装路径，即此命令的路径）：<br>1、导出数据和表结构：<br>mysqldump -u用户名 -p密码 数据库名 &gt; 数据库名.sql</p>
+<p>#/usr/local/mysql/bin/   mysqldump -uroot -p abc &gt; abc.sql<br>敲回车后会提示输入密码</p>
+<p>2、只导出表结构<br>mysqldump -u用户名 -p密码 -d 数据库名 &gt; 数据库名.sql</p>
+<p>#/usr/local/mysql/bin/   mysqldump -uroot -p -d abc &gt; abc.sql</p>
+<p>注：/usr/local/mysql/bin/  —&gt;  mysql的data目录</p>
+<p>二、导入数据库<br>1、首先建空数据库<br>mysql&gt;create database abc;</p>
+<p>2、导入数据库<br>方法一：<br>（1）选择数据库<br>mysql&gt;use abc;<br>（2）设置数据库编码<br>mysql&gt;set names utf8;<br>（3）导入数据（注意sql文件的路径）<br>mysql&gt;source /home/abc/abc.sql;<br>方法二：<br>mysql -u用户名 -p密码 数据库名 &lt; 数据库名.sql</p>
+<p>#mysql -uabc_f -p abc &lt; abc.sql</p>
+<p>建议使用第二种方法导入。</p>
+<p>注意：有命令行模式，有sql命令</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Java_Thread/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Java_Thread/" itemprop="url">Java线程</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:22:35+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Java/" itemprop="url" rel="index">
+                    <span itemprop="name">Java</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>###Java线程<br>sleep(int num) 方法是指当前的线程睡眠 num 时间，在线程的 run 方法中调用（是 Thread 的一个方法），有同学会无意中写在 Runnable 中，发现 sleep     方法始终不被识别。</p>
+<p>Object lock = new Object();<br><br>lock 可以执行 wait 和 notify 方法，进行不同线程的状态切换<br><br><br><br>wait() 当前已经获得锁的线程进入等待状态 <br><br>notify() 当前线程结束，并通知处于等待状态的线程继续执行</p>
+<p><strong>每个对象都有一把锁</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">Object lock = <span class="keyword">new</span> Object();&lt;br&gt;</div><div class="line"><span class="comment">//线程1中的加锁语句</span></div><div class="line"><span class="keyword">synchronized</span> (lock) &#123;</div><div class="line"><span class="comment">//。。。</span></div><div class="line"><span class="keyword">try</span> &#123;						   </div><div class="line">  lock.wait(); <span class="comment">//当前线程进入等待状态</span></div><div class="line">&#125; </div><div class="line"><span class="keyword">catch</span> (InterruptedException e) &#123;</div><div class="line">  e.printStackTrace();</div><div class="line">&#125;</div><div class="line"><span class="comment">//。。。</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//线程2中的加锁语句</span></div><div class="line"><span class="keyword">synchronized</span> (lock) &#123;</div><div class="line"><span class="comment">//。。。</span></div><div class="line">lock.notify();<span class="comment">//通知启动等待状态的线程开启</span></div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>1、流程1，先 start 线程1，后 start 线程2<br>执行到线程1的加锁语句，此时lock没有加锁顺利执行，然后执行lock.wait();此时lock的锁进入等待状态（可以被其他访问）<br>线程2中的加锁语句就可以拿到锁，执行完语句后，lock.notify()进行了唤醒通知，wait队列中的等待线程开始执行Object lock = new Object();<br></p>
+<p>####注意事项<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">new</span> Thread()&#123;</div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span></span>&#123;</div><div class="line"><span class="comment">//...</span></div><div class="line">&#125;</div><div class="line">&#125;.start();</div></pre></td></tr></table></figure></p>
+<p>main()创建 Thread 对象时,它并未捕获任何一个对象的句柄。普通对象对于垃圾收集来说是一种“公平竞<br>赛”,但线程却并非如此。每个线程都会“注册”自己,所以某处实际存在着对它的一个引用。这样一来,<br>垃圾收集器便只好对它“瞠目以对”了。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Linux使用权限/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Linux使用权限/" itemprop="url">Linux使用记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:22:24+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Linux使用记录</p>
+<p>#####(1)文件权限设置<br>ls -l命令列文件表时<br>如果用命令chmod 777 tt.htm，结果是<br><br>-rwxrwxrwx  1 bu users 2254 2006-05-20 13:47 tt.htm<br><br>任何人都有读、写、运行三项权限。<br>用ls -l命令列文件表时，得到如下输出:<br>-rw-r–r–  1 bu users  2254 2006-05-20 13:47 tt.htm<br>从第二个字符起rw-是说用户bu有读、写权，没有运行权，接着的r–表示用户组users只有读权限，没有运行权，最后的r–指其他人（others）只有读权限，没有写权和运行权。这是系统默认设置，我可以改写tt.htm，同组的人和其他人只有权读，没人有权运行，因为只是一个html文件，不必运行。这在Novell的directory services之前很先进。<br>读、写、运行三项权限可以用数字表示，就是r=4,w=2,x=1。所以，上面的例子中的rw-r–r–用数字表示成644。<br>反过来说777就是rwxrwxrwx，意思是该登录用户（可以用命令id查看）、他所在的组和其他人都有最高权限。<br>再多说一句。我用chmod o-r tt.htm命令改权限，o-r是others的权限中减掉读。结果是<br>-rw-r—–  1 bu users 2254 2006-05-20 13:47 tt.htm<br>如果用命令chmod 777 tt.htm，结果是</p>
+<p>#####(2)新增系统用户<br>运行 sudo adduser linc 　新建 linc 用户。</p>
+<p>[sudo] password for linc:</p>
+<p>报错：linc 不在 sudoers 文件中。此事将被报告。<br>解决办法，在sudoers中添加用户</p>
+<p>sudo gedit /etc/sudoers　<br></p>
+<p>root    ALL=(ALL:ALL) ALL<br><br>linc    ALL=(ALL:ALL) ALL</p>
+<p>#####(5)MySql配置<br>首先建立好数据库。在 Gogs 目录的 scripts/mysql.sql 文件是数据库初始化文件。执行 mysql -u root -p &lt; scripts/mysql.sql （需要输入密码）即可初始化好数据库。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Linux常用命令集锦/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Linux常用命令集锦/" itemprop="url">Linux常用命令集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:22:16+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Linux常用命令集</p>
+<p>######查看目录内容<br>＃ ls <br><br>＃ ls -a  (罗列所有内容包括隐藏的文件)<br><br>＃ atom test.txt (用atom程序打开test.txt文件)</p>
+<p>######新建、复制、移动、删除文件<br>＃markdir testFile (新建testFile文件夹)</p>
+<p>######清理回收站<br>（1）$su root      //进入root用户模式<br><br>（2）＃cd /home/gyb/.Trash       //进入用户目录下的回收站，其中gyb是我自己建的用户目录<br><br>（3）＃rm –rf *        //清空回收站<br></p>
+<p>######Java<br>export JAVA_HOME=/home/baron/work/jdk1.8.0_121<br>export PATH=$JAVA_HOME/bin:$PATH</p>
+<p>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+<p>#####权限不够<br>程序执行权限  #chmod +x  testFile/test.txt<br>修改访问权限　＃chmod 777 testFile/test.txt </p>
+<p>######tomcat启动失败</p>
+<p>baron@baron-pc:~/work/tomcat-8.5.13/bin$ ./startup.sh<br>Cannot find ./catalina.sh<br>The file is absent or does not have execute permission<br>This file is needed to run this program</p>
+<p>解决方法：</p>
+<p>依旧在tomcat 的bin目录下 </p>
+<p>执行 chmod +x *.sh  </p>
+<p>然后用sh startup.sh启动成功</p>
+<p>######Wifi<br>(1)＃ifconfig<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wlp2s0: flags=<span class="number">4099</span>&lt;UP,BROADCAST,MULTICAST&gt;  mtu <span class="number">1500</span></div><div class="line">        ether a0:c5:<span class="number">89</span>:<span class="number">5</span>a:<span class="number">86</span>:<span class="number">06</span>  txqueuelen <span class="number">4096</span>  (Ethernet)</div><div class="line">        RX packets <span class="number">400249</span>  bytes <span class="number">145213400</span> (<span class="number">138.4</span> MiB)</div><div class="line">        RX errors <span class="number">0</span>  dropped <span class="number">0</span>  overruns <span class="number">0</span>  frame <span class="number">0</span></div><div class="line">        TX packets <span class="number">986439</span>  bytes <span class="number">1071274285</span> (<span class="number">1021.6</span> MiB)</div><div class="line">        TX errors <span class="number">0</span>  dropped <span class="number">0</span> overruns <span class="number">0</span>  carrier <span class="number">0</span>  collisions <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>(2)＃sudo ip link set wlp2s0 up <br><br>(3)＃sudo iw dev wlp2s0 scan | less <br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Gson解析Json数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Gson解析Json数据/" itemprop="url">Json解析技巧（利用泛型）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:21:56+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Http/" itemprop="url" rel="index">
+                    <span itemprop="name">Http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Json解析技巧（利用泛型）<br>下面是一个比较典型的Json返回格式<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "success": true,</div><div class="line">    "description": "",</div><div class="line">    "data": [</div><div class="line">        &#123;</div><div class="line">            "pictureNumber": "402848145690b87d01569283d8230527",</div><div class="line">            "companyId": "402848145690b87d01569283d8230527",</div><div class="line">            "itemName": "机房、滑轮间环境：清洁，门窗完好、照明正常 ",</div><div class="line">            "isPicture": "402848145690b87d01569283d8230527",</div><div class="line">            "isQr": "402848145690b87d01569283d8230527",</div><div class="line">            "id": "402848f95be5db65015be5e4ea4d0001"</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            "pictureNumber": "402848145690b87d01569283d8230527",</div><div class="line">            "companyId": "402848145690b87d01569283d8230527",</div><div class="line">            "itemName": "导靴上油杯：吸油毛毡齐全，油量适宜，油杯无泄露",</div><div class="line">            "isPicture": "402848145690b87d01569283d8230527",</div><div class="line">            "isQr": "402848145690b87d01569283d8230527",</div><div class="line">            "id": "402848f95be5db65015be5e4ea8f000a"</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>一般的Json返回数据有”success”，”description”，这两个相同，主要区别在于”data”<brng><br>我们在利用Gson进行转换时需要利用Json结果转换得到对应实体。<br>为了提高代码重复利用，我们可以利用泛型设计统一的结果数据处理器。</brng></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Json结果转化器</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Result</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">boolean</span> success;</div><div class="line">    String  description;</div><div class="line">    List&lt;T&gt; data;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 实体类</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WbOrderItem</span></span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * pictureNumber(拍照数量) : 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * companyId : 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * itemName(项次名) : 机房、滑轮间环境：清洁，门窗完好、照明正常　</span></div><div class="line"><span class="comment">     * isPicture（是否拍照）: 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * isQr （是否扫码）: 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * id : 402848f95be5db65015be5e4ea4d0001</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> String pictureNumber;</div><div class="line">    <span class="keyword">private</span> String companyId;</div><div class="line">    <span class="keyword">private</span> String itemName;</div><div class="line">    <span class="keyword">private</span> String isPicture;</div><div class="line">    <span class="keyword">private</span> String isQr;</div><div class="line">    <span class="keyword">private</span> String id;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Http内容编码格式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Http内容编码格式/" itemprop="url">Http编码格式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:21:51+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Http/" itemprop="url" rel="index">
+                    <span itemprop="name">Http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Http编码格式<br>Volley中Request默认接收的编码格式为iso-8859-1，后台接口如果没有指定Content-Type:”application/json; charset=UTF-8”的格式，Volley就会默认转成iso-8859-1。<br>Java的String 编码格式转换方式。iso-8859-1为欧洲编码格式，不支持中文。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str=liftArray.toString();</div><div class="line">str=<span class="keyword">new</span> String(str.getBytes(<span class="string">"iso-8859-1"</span>),<span class="string">"utf-8"</span>);</div></pre></td></tr></table></figure></p>
+<p> UTF-8  GBk  Unicode</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Gogs使用详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Gogs使用详解/" itemprop="url">Gogs使用介绍</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:21:29+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>###Gogs使用介绍<br>Gogs是一款类似Github(国内有码市)的开源文件／代码管理系统（基于Git）<br>Gos官方地址：<a href="http://www.oschina.net/p/gogs/" target="_blank" rel="external">http://www.oschina.net/p/gogs/</a><br><br><strong>目前功能基本介绍</strong><br><br>远程代码仓库管理<br><br>代码仓库权限分配、管理<br><br>团队管理<br><br>代码审查<br></p>
+<p>####(1)注册<br><img src="./注册.png" alt="注册"></p>
+<hr>
+<p>####(2)基本功能介绍</p>
+<p>######主面板说明<br><img src="./images/Gogs页面基本.png" alt="基本"></p>
+<hr>
+<p>图中１表示自己个人账户下的仓库（所有权属于自己）<br><br>图中２表示自己参与的仓库(所有权不属于自己)<br></p>
+<p><strong>注意</strong><br><br>自己个人账户下的仓库一般为自己创建，或者其他仓库所有者转让仓库。自己对该仓库具有全部权限（写入／删除文件、增加成员、删除成员、合并分之、审核分之）</p>
+<hr>
+<p>######新建仓库<br><img src="./images/创建仓库.png" alt="创建仓库"></p>
+<hr>
+<p>在主面板中点击我的仓库右侧的”+”按钮后进入新建仓库页面，在此页面中我们需哟啊输入仓库的基本描述，并设置可见属性.<br><br><strong>注意</strong><br><br>在创建仓库按钮的上方有一个复选框“使用选定文件和模板初始化仓库”。<br>这里如果不选，则会生成一个空仓库，我们需要在本地生成一个仓库（或者原有仓库），然后将本地仓库的远程仓库地址设置成我们在Gogs中新建的仓库地址。</p>
+<hr>
+<p>######仓库使用基介绍<br><img src="./images/仓库介绍.png" alt="仓库介绍"></p>
+<hr>
+<p>图中１仓库中的文件管理页面<br><br>图中２仓库的工单管理页面<br><br>图中３仓库的合并请求管理（代码审查、合并）<br><br>图中４查看代码的分支<br><br>图中５在浏览器中上传和下载文件（不依赖Git）<br><br>图中６当前仓库的远程地址（将其拷贝下来，将本地的对应仓库的origin地址设置）<br><br>图中７当前仓库的文件阅览<br></p>
+<hr>
+<p>######基于浏览器进行文件上传下载<br><img src="./images/浏览器上传.png" alt="仓库介绍"><br>可以直接在浏览器中进行文件上传</p>
+<hr>
+<p><img src="./images/gog文档在线查看.png" alt="在线"><br>可以直接在浏览器查看对应文档，或者下载文档</p>
+<hr>
+<p>######工单管理<br>省略。。。</p>
+<p>######合并管理<br>省略。。。</p>
+<hr>
+<p>####(4)组织管理<br>Git魅力不仅仅体现在对代码的管理，还有有效的管理团队合作上<br></p>
+<p>######组织管理介绍<br>Gogs也专门提供了<strong>组织</strong>管理功能（组织可以代表一个公司，可以在<strong>组织</strong>下建立仓库、添加组织成员，然后通过创建和设置团队，将组织名下的仓库分别授权给不同的成员）</p>
+<hr>
+<p><img src="./images/组织管理.png" alt="仓库组织"><br>图中点击”我的组织”后面的“＋”号可以新建组织</p>
+<hr>
+<p><img src="./images/组织页面.png" alt="组织页面"></p>
+<hr>
+<p>图中１显示当前组织下的仓库，点击创建新仓库可以添加新的组织<br><br>图中２显示当前组织中的成员，可以点击邀请其他人，添加新的成员<br><br>图中３显示当前组织下设置的团队（每个团对可以分别添加组织下的不同仓库和不同成员，并设置该团队权限（写入、阅读））<br></p>
+<hr>
+<p><img src="./images/团队设置.png" alt="团队设置"></p>
+<hr>
+<p>图中１显示该团队有４名成员<br><br>图中２显示该团队拥有当前组织的２个仓库的权限<br><br>图中３显示该团队对yo拥有的２个仓库具有读取和写入的权限<br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/图片异步加载详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/图片异步加载详解/" itemprop="url">ListView的并发问题（异步加载图片)</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:21:08+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###ListView的并发问题（异步加载图片）<br>一般处理图片都是放在异步线程中，当通过ListView或者GridView加载大量图片时，经常会出现图片错乱的问题。</p>
+<p>在此，我们学习和讨论一下大量图片的异步加载、缓存，并优化的问题<br>异步加载图片<br><br>Google的官方加载图片的源代码如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BitmapWorkerTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> WeakReference imageViewReference;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> data = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BitmapWorkerTask</span><span class="params">(ImageView imageView)</span> </span>&#123;</div><div class="line">        <span class="comment">// Use a WeakReference to ensure the ImageView can be garbage collected</span></div><div class="line">        imageViewReference = <span class="keyword">new</span> WeakReference(imageView);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Decode image in background.</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">doInBackground</span><span class="params">(Integer... params)</span> </span>&#123;</div><div class="line">        data = params[<span class="number">0</span>];</div><div class="line">        <span class="keyword">return</span> decodeSampledBitmapFromResource(getResources(), data, <span class="number">100</span>, <span class="number">100</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Once complete, see if ImageView is still around and set bitmap.</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Bitmap bitmap)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (imageViewReference != <span class="keyword">null</span> &amp;&amp; bitmap != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">final</span> ImageView imageView = imageViewReference.get();</div><div class="line">            <span class="keyword">if</span> (imageView != <span class="keyword">null</span>) &#123;</div><div class="line">                imageView.setImageBitmap(bitmap);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>通过异步加载可以起到不阻碍主线程并优化内存使用的效果，在单独对某个ImageView使用时是非常有效的。</p>
+<p>但在ListView中时，为了View的重复利用，实际我们是不断在重复使用几个相同的View，而我们在滑动异步加载图片时，无法确定异步任务何时启动何时结束，</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Android代码规范注意/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Android代码规范注意/" itemprop="url">Androidd代码注意</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:20:32+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Androidd代码注意</p>
+<p>Toast.makeText(context, “待命成功！”, Toast.LENGTH_SHORT).show();</p>
+<p>######[Accessibility] Missing contentDescription attribute on image<br>在一些没有文本显示的控件里，如imageView和imageButton等，ADT会提示你定义一个android:contentDescription属性，用来描述这个控件的作用</p>
+<p>######Missing labelFor attribute(No label views point to this text field with an ‘android:labelFor=”@+id/password_old_input”‘ attribute)<br>需要在EditText属性中添加inputType和labelFor两个属性。其中labelFor属性的值与id值相同即可</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Android一些细节/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Android一些细节/" itemprop="url">Android一些零碎的知识整理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:08:36+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Android一些零碎的知识整理</p>
+<p>######Activity生命周期中的一些细节<br><br>(1) <strong>A</strong> Activity启动<strong>B</strong>Activity时onPause和onDetroy方法与<strong>B</strong> Activity生命周期方法的执行次序<br><br>在A启动Ｂ时会先执行A的onPause方法，然后开始执行B的onCreate　-&gt; onStart -&gt; onResume ,最后执行A的onStop</p>
+<p>(2)鉴于(1)中的方法调用顺序，所以在页面跳转时，不可以在onPause中进行耗时的保存工作，可以进行简单的键值对一类的保存，而是将稍微大些的保存放在onStop中</p>
+<p>(3)Activity的４种加载模式　standard、singleTop、singleInstance、singleTaSK.<br><br>android对Activity的管理，采用Task（即栈）来管理多个Activity，当我们启动一个应用时，Android就会为之创建了一个Task,然后启动这个应用的入口Activity。<br>Android的Task是一个有点麻烦的概念，因为Android并没有为Task提供API,因此开发者无法真正访问Task,只能调用Activity的getTaskId()方法来获取它所在的Task的ID。<br><br>（４）startActivity()方法是否可以在子线程中调用？<br>可以，其实这是一种误导的问题，因为startActivity其实不像View那样，因为View的调用不是线程安全的，必须在主线程中调用否则将抛出错误。而startActivity背后是不一样的</p>
 
           
         
@@ -380,6 +1762,10 @@
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -411,9 +1797,9 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/avatar.gif"
-               alt="John Doe" />
-          <p class="site-author-name" itemprop="name">John Doe</p>
+               src="/uploads/icon.jpg"
+               alt="Baronli" />
+          <p class="site-author-name" itemprop="name">Baronli</p>
            
               <p class="site-description motion-element" itemprop="description"></p>
           
@@ -423,12 +1809,21 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-count">51</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
           
 
           
@@ -475,12 +1870,12 @@
       <div class="footer-inner">
         <div class="copyright" >
   
-  &copy; 
+  &copy;  2016 - 
   <span itemprop="copyrightYear">2017</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">John Doe</span>
+  <span class="author" itemprop="copyrightHolder">Baronli</span>
 </div>
 
 
@@ -530,6 +1925,8 @@
   
 
 
+  
+
 
 
 
@@ -557,6 +1954,9 @@
 
   
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
 
 
   
