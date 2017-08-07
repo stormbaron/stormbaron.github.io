@@ -262,7 +262,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Android规范事项/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/AndroidStudio使用记录/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Baronli">
@@ -281,7 +281,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/03/Android规范事项/" itemprop="url">Android开发注意</a></h1>
+                <a class="post-title-link" href="/2017/08/03/AndroidStudio使用记录/" itemprop="url">Android Studio使用记录</a></h1>
         
 
         <div class="post-meta">
@@ -293,7 +293,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:44:12+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:44:27+08:00">
                 2017-08-03
               </time>
             
@@ -334,11 +334,7 @@
         
           
             <a id="more"></a> 
-<p>####Android开发注意<br>1、<strong>删除无用的import</strong><br><br><br><br>2、<strong>不要编写过于复杂的方法（分拆方法）</strong><br><br><br><br>3、<strong>及时修改JavaDoc的参数和含义，我们在给方法进行注解的时候，如果方法进行了修改尤其是参数上，一定要及时修改注解</strong><br><br><br><br>4、<strong>if 判断语句的改良</strong><br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (noScroll)</div><div class="line">   <span class="keyword">return</span> <span class="keyword">false</span>;</div><div class="line"><span class="keyword">else</span></div><div class="line">   <span class="keyword">return</span> <span class="keyword">super</span>.onInterceptTouchEvent(arg0);</div></pre></td></tr></table></figure></p>
-<p>可以修改成<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">return</span> !noScroll &amp;&amp; <span class="keyword">super</span>.onInterceptTouchEvent(arg0);</div></pre></td></tr></table></figure></p>
-<p>Reports if statements of the form if (condition) return true else return foo or if (condition) return false else return foo. These expressions may be safely simplified to return condition || foo or return !condition &amp;&amp; foo, respectively. <br><br><br><br>5、<strong>Such &lt;&gt; syntax is not supported under Java 1.6 or earlier JVMs.</strong><br>This inspection reports all new expressions with type arguments which can be replaced with diamond type &lt;&gt;<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">List&lt;NameValuePair&gt; params = <span class="keyword">new</span> ArrayList&lt;NameValuePair&gt;</div><div class="line">();</div><div class="line"><span class="comment">//替换</span></div><div class="line">List&lt;NameValuePair&gt; params = <span class="keyword">new</span> ArrayList&lt;&gt;();</div></pre></td></tr></table></figure></p>
-<p><br><br>6、<strong>用’foreach’替换’for’loop</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">   。。。</div><div class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; orderArray.length; i++) &#123;</div><div class="line">     orderString = orderArray[i];          </div><div class="line">&#125;</div><div class="line"><span class="comment">//可以替换成</span></div><div class="line"><span class="keyword">for</span>(String str:orderArray)&#123;</div><div class="line">    。。。</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><br><br>7、</p>
+<p>#####Android Studio使用记录<br> 解决External file changes sync may be slow: The current inotify(7) watch limit is too low. More details. (show balloon)<br> s<br>sudo sysctl fs.inotify.max_user_watches=5242881</p>
 
           
         
@@ -387,7 +383,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Android组件化与插件化开发/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/AndroidSDK版本中方法/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Baronli">
@@ -406,7 +402,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2017/08/03/Android组件化与插件化开发/" itemprop="url">Android 开发组件化和插件化</a></h1>
+                <a class="post-title-link" href="/2017/08/03/AndroidSDK版本中方法/" itemprop="url">Android Sdk版本问题</a></h1>
         
 
         <div class="post-meta">
@@ -418,7 +414,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:42:56+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:44:22+08:00">
                 2017-08-03
               </time>
             
@@ -459,14 +455,9 @@
         
           
             <a id="more"></a> 
-<p>####Android 开发组件化和插件化</p>
-<p><strong>组件化开发</strong>就是将一个app分成多个模块，每个模块都是一个组件（Module），开发的过程中我们可以让这些组件相互依赖或者单独调试部分组件等，但是最终发布的时候是将这些组件合并统一成一个apk，这就是组件化开发。<br><br><strong>插件化开发</strong>和<strong>组件化开发</strong>略有不用，插件化开发时将整个app拆分成很多模块，这些模块包括一个宿主和多个插件，每个模块都是一个apk（组件化的每个模块是个lib），最终打包的时候将宿主apk和插件apk分开或者联合打包。</p>
-<p>android工程的组件一般分为两种，lib组件和application组件<br>application组件是指该组件本身就可以运行并打包成apk<br>lib组件是指该组件属于app的一部分，可以供其它组件使用但是本身不能打包成apk</p>
-<p>#####通讯问题<br>插件化是将一个APK分拆成了多个APK,比如可以讲登陆、支付等分别做成一个插件（APK），他们是运行在不同的进程中的，则进程间的通信是要处理的</p>
-<p>1.最简单是使用ContentProvider获取SQL数据库/或者sharePreference的数据，具体还是要看你自身app保存数据的封装</p>
-<p>2.你可以将用户资料保存在sharePreference，只是这里需要一些技巧</p>
-<p>3.当然你还可以使用跨app的aidl</p>
-<p>4.因为类似用户信息这样的算是基本信息，其应该保存到base module里面让大家都可以获取。</p>
+<p>####Android Sdk版本问题<br>（１）<br>Notification notification2 = new Notification(R.mipmap.icon_demo, “通知测试”, System.currentTimeMillis());<br>notification2.setLatestEventInfo(getActivity(),”testTitle”,”testContent”,null);</p>
+<p>结果androidstudio报错，setLatestEventInfo该方法找不到，实际上该方法存在于源码中</p>
+<p>FloatMath<br>Android6.0使用 Math.floor 代替 FloatMath.floor 即可，见下图：</p>
 
           
         
@@ -1016,141 +1007,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Android测试/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Baronli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Baronli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/03/Android测试/" itemprop="url">Android测试</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:40:49+08:00">
-                2017-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a> 
-<p>##Android测试<br>测试在开发中的地位无需多言，在Android开发中，我们最离不开的应该是　单元测试，同时我们也希望对UI页面的各类点击事件进行测试。</p>
-<p>####单元测试　（JUnit）<br>JUnit是我们在进行单元测试常用的测试框架，使用方式<br>首先我们需要添加一下依赖，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">testCompile <span class="string">'junit:junit:4.12'</span></div></pre></td></tr></table></figure></p>
-<p>在开始编写junit测试之前，需要为其新建一个目录。通常，这个会被叫做test，会和main文件夹平级。在Android studio创建项目时一般会自动生成相关目录。<br><img src="./images/testPath.png" alt="样例"></p>
-<p>#####编写测试样例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> junit.framework.Assert.assertEquals;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleUnitTest</span> </span>&#123;</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addition_isCorrect</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        assertEquals(<span class="number">8</span>, <span class="number">2</span> * <span class="number">4</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>#####运行测试<br>直接在Android studio中右击项目，然后点击　“Run AllTests”就可以运行，运行结果如下:</p>
-<p>######代码运行正常<br><img src="./images/testExample2.png" alt="样例"></p>
-<p>######代码出现Ｂug<br><img src="./images/testExample3.png" alt="样例"></p>
-<p>####关联Android sdk代码(Robolectric)</p>
-<p>####功能测试(Espresso)</p>
-<p>注意：功能测试需要放在AndroidTest目录下，下面是测试用例：</p>
-<p>####测试覆盖率</p>
-<p>一旦你在你的项目中使用到了测试，那么你肯定想知道你的测试覆盖量。很真实，依然有很多测试覆盖率工具，我推荐的是Jacoco。</p>
-<p>Jacoco</p>
-<p>####代码分析(Android Lint)</p>
-<p>####检测工具LeakCanry 和BlockCanary</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Android权限申请/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1538,6 +1394,137 @@
 
 
     
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Android性能优化/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Android性能优化/" itemprop="url">Android性能优化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:39:56+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>###Android性能优化</p>
+<p>####检测工具</p>
+<p>#####（1）Android Lint<br>Android studio中内置了代码检测工具Lint<br><br>找到Analyze目录下的Inspect Code检查代码选项点击<br><br>弹出下面这个框框，在这个列表选项中我们可以选择Inspect Code的范围，点击OK<br><br>待分析完毕后，我们可以在Inspection栏目中看到检查的结果,其中，我们从检查结果可知，它会给出所有在这个项目中不规范的编码、多余的资源、可能的bug、或者其它的一些问题，然后会给出修改的建议供我们参考，虽然这些问题并不会影响App的正常运行，不过这对于项目的规范性和维护性来说是非常重要的。</p>
+<p>#####（2）Android Monitors<br>通过Monitors工具我们可以观察到Memory、GPU、CPU、Network在各个时间段里的运行占比。通过分析数据，我们可以知道在进入到某个页面或者执行某个方法时，各个资源的耗费。</p>
+<p>#####（3）APK Analyzer</p>
+<p>1、将一个apk拖动到Android Studio的编辑器窗口<br>2、在Project窗口中，双击build/output/apks/目录下的apk<br>3、在菜单栏中选择选择Build &gt; Analyze APK，然后选择要分析的apk</p>
+<p>####网络加载时间（发送、接收、处理、显示）</p>
+<p>####内存泄露</p>
+<p>####OOM</p>
+<p>####控件加载速度（地图、图表格）</p>
+<p>####APK大小压缩</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
   </section>
 
   
@@ -1588,7 +1575,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1599,7 +1586,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

@@ -262,6 +262,779 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Linux使用权限/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Linux使用权限/" itemprop="url">Linux使用记录</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:22:24+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Linux使用记录</p>
+<p>#####(1)文件权限设置<br>ls -l命令列文件表时<br>如果用命令chmod 777 tt.htm，结果是<br><br>-rwxrwxrwx  1 bu users 2254 2006-05-20 13:47 tt.htm<br><br>任何人都有读、写、运行三项权限。<br>用ls -l命令列文件表时，得到如下输出:<br>-rw-r–r–  1 bu users  2254 2006-05-20 13:47 tt.htm<br>从第二个字符起rw-是说用户bu有读、写权，没有运行权，接着的r–表示用户组users只有读权限，没有运行权，最后的r–指其他人（others）只有读权限，没有写权和运行权。这是系统默认设置，我可以改写tt.htm，同组的人和其他人只有权读，没人有权运行，因为只是一个html文件，不必运行。这在Novell的directory services之前很先进。<br>读、写、运行三项权限可以用数字表示，就是r=4,w=2,x=1。所以，上面的例子中的rw-r–r–用数字表示成644。<br>反过来说777就是rwxrwxrwx，意思是该登录用户（可以用命令id查看）、他所在的组和其他人都有最高权限。<br>再多说一句。我用chmod o-r tt.htm命令改权限，o-r是others的权限中减掉读。结果是<br>-rw-r—–  1 bu users 2254 2006-05-20 13:47 tt.htm<br>如果用命令chmod 777 tt.htm，结果是</p>
+<p>#####(2)新增系统用户<br>运行 sudo adduser linc 　新建 linc 用户。</p>
+<p>[sudo] password for linc:</p>
+<p>报错：linc 不在 sudoers 文件中。此事将被报告。<br>解决办法，在sudoers中添加用户</p>
+<p>sudo gedit /etc/sudoers　<br></p>
+<p>root    ALL=(ALL:ALL) ALL<br><br>linc    ALL=(ALL:ALL) ALL</p>
+<p>#####(5)MySql配置<br>首先建立好数据库。在 Gogs 目录的 scripts/mysql.sql 文件是数据库初始化文件。执行 mysql -u root -p &lt; scripts/mysql.sql （需要输入密码）即可初始化好数据库。</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Linux常用命令集锦/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Linux常用命令集锦/" itemprop="url">Linux常用命令集</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:22:16+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Linux常用命令集</p>
+<p>######查看目录内容<br>＃ ls <br><br>＃ ls -a  (罗列所有内容包括隐藏的文件)<br><br>＃ atom test.txt (用atom程序打开test.txt文件)</p>
+<p>######新建、复制、移动、删除文件<br>＃markdir testFile (新建testFile文件夹)</p>
+<p>######清理回收站<br>（1）$su root      //进入root用户模式<br><br>（2）＃cd /home/gyb/.Trash       //进入用户目录下的回收站，其中gyb是我自己建的用户目录<br><br>（3）＃rm –rf *        //清空回收站<br></p>
+<p>######Java<br>export JAVA_HOME=/home/baron/work/jdk1.8.0_121<br>export PATH=$JAVA_HOME/bin:$PATH</p>
+<p>export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</p>
+<p>#####权限不够<br>程序执行权限  #chmod +x  testFile/test.txt<br>修改访问权限　＃chmod 777 testFile/test.txt </p>
+<p>######tomcat启动失败</p>
+<p>baron@baron-pc:~/work/tomcat-8.5.13/bin$ ./startup.sh<br>Cannot find ./catalina.sh<br>The file is absent or does not have execute permission<br>This file is needed to run this program</p>
+<p>解决方法：</p>
+<p>依旧在tomcat 的bin目录下 </p>
+<p>执行 chmod +x *.sh  </p>
+<p>然后用sh startup.sh启动成功</p>
+<p>######Wifi<br>(1)＃ifconfig<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">wlp2s0: flags=<span class="number">4099</span>&lt;UP,BROADCAST,MULTICAST&gt;  mtu <span class="number">1500</span></div><div class="line">        ether a0:c5:<span class="number">89</span>:<span class="number">5</span>a:<span class="number">86</span>:<span class="number">06</span>  txqueuelen <span class="number">4096</span>  (Ethernet)</div><div class="line">        RX packets <span class="number">400249</span>  bytes <span class="number">145213400</span> (<span class="number">138.4</span> MiB)</div><div class="line">        RX errors <span class="number">0</span>  dropped <span class="number">0</span>  overruns <span class="number">0</span>  frame <span class="number">0</span></div><div class="line">        TX packets <span class="number">986439</span>  bytes <span class="number">1071274285</span> (<span class="number">1021.6</span> MiB)</div><div class="line">        TX errors <span class="number">0</span>  dropped <span class="number">0</span> overruns <span class="number">0</span>  carrier <span class="number">0</span>  collisions <span class="number">0</span></div></pre></td></tr></table></figure></p>
+<p>(2)＃sudo ip link set wlp2s0 up <br><br>(3)＃sudo iw dev wlp2s0 scan | less <br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Gson解析Json数据/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Gson解析Json数据/" itemprop="url">Json解析技巧（利用泛型）</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:21:56+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Http/" itemprop="url" rel="index">
+                    <span itemprop="name">Http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Json解析技巧（利用泛型）<br>下面是一个比较典型的Json返回格式<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    "success": true,</div><div class="line">    "description": "",</div><div class="line">    "data": [</div><div class="line">        &#123;</div><div class="line">            "pictureNumber": "402848145690b87d01569283d8230527",</div><div class="line">            "companyId": "402848145690b87d01569283d8230527",</div><div class="line">            "itemName": "机房、滑轮间环境：清洁，门窗完好、照明正常 ",</div><div class="line">            "isPicture": "402848145690b87d01569283d8230527",</div><div class="line">            "isQr": "402848145690b87d01569283d8230527",</div><div class="line">            "id": "402848f95be5db65015be5e4ea4d0001"</div><div class="line">        &#125;,</div><div class="line">        &#123;</div><div class="line">            "pictureNumber": "402848145690b87d01569283d8230527",</div><div class="line">            "companyId": "402848145690b87d01569283d8230527",</div><div class="line">            "itemName": "导靴上油杯：吸油毛毡齐全，油量适宜，油杯无泄露",</div><div class="line">            "isPicture": "402848145690b87d01569283d8230527",</div><div class="line">            "isQr": "402848145690b87d01569283d8230527",</div><div class="line">            "id": "402848f95be5db65015be5e4ea8f000a"</div><div class="line">        &#125;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>一般的Json返回数据有”success”，”description”，这两个相同，主要区别在于”data”<brng><br>我们在利用Gson进行转换时需要利用Json结果转换得到对应实体。<br>为了提高代码重复利用，我们可以利用泛型设计统一的结果数据处理器。</brng></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * Json结果转化器</span></div><div class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt;</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Result</span>&lt;<span class="title">T</span>&gt; </span>&#123;</div><div class="line">    <span class="keyword">boolean</span> success;</div><div class="line">    String  description;</div><div class="line">    List&lt;T&gt; data;</div><div class="line">&#125;</div><div class="line"><span class="comment">/**</span></div><div class="line"><span class="comment"> * 实体类</span></div><div class="line"><span class="comment"> */</span></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">WbOrderItem</span></span>&#123;</div><div class="line">    <span class="comment">/**</span></div><div class="line"><span class="comment">     * pictureNumber(拍照数量) : 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * companyId : 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * itemName(项次名) : 机房、滑轮间环境：清洁，门窗完好、照明正常　</span></div><div class="line"><span class="comment">     * isPicture（是否拍照）: 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * isQr （是否扫码）: 402848145690b87d01569283d8230527</span></div><div class="line"><span class="comment">     * id : 402848f95be5db65015be5e4ea4d0001</span></div><div class="line"><span class="comment">     */</span></div><div class="line">    <span class="keyword">private</span> String pictureNumber;</div><div class="line">    <span class="keyword">private</span> String companyId;</div><div class="line">    <span class="keyword">private</span> String itemName;</div><div class="line">    <span class="keyword">private</span> String isPicture;</div><div class="line">    <span class="keyword">private</span> String isQr;</div><div class="line">    <span class="keyword">private</span> String id;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Http内容编码格式/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Http内容编码格式/" itemprop="url">Http编码格式</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:21:51+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Http/" itemprop="url" rel="index">
+                    <span itemprop="name">Http</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>####Http编码格式<br>Volley中Request默认接收的编码格式为iso-8859-1，后台接口如果没有指定Content-Type:”application/json; charset=UTF-8”的格式，Volley就会默认转成iso-8859-1。<br>Java的String 编码格式转换方式。iso-8859-1为欧洲编码格式，不支持中文。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">String str=liftArray.toString();</div><div class="line">str=<span class="keyword">new</span> String(str.getBytes(<span class="string">"iso-8859-1"</span>),<span class="string">"utf-8"</span>);</div></pre></td></tr></table></figure></p>
+<p> UTF-8  GBk  Unicode</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Gogs使用详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Baronli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/icon.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Baronli">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2017/08/03/Gogs使用详解/" itemprop="url">Gogs使用介绍</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T14:21:29+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <a id="more"></a> 
+<p>###Gogs使用介绍<br>Gogs是一款类似Github(国内有码市)的开源文件／代码管理系统（基于Git）<br>Gos官方地址：<a href="http://www.oschina.net/p/gogs/" target="_blank" rel="external">http://www.oschina.net/p/gogs/</a><br><br><strong>目前功能基本介绍</strong><br><br>远程代码仓库管理<br><br>代码仓库权限分配、管理<br><br>团队管理<br><br>代码审查<br></p>
+<p>####(1)注册<br><img src="./注册.png" alt="注册"></p>
+<hr>
+<p>####(2)基本功能介绍</p>
+<p>######主面板说明<br><img src="./images/Gogs页面基本.png" alt="基本"></p>
+<hr>
+<p>图中１表示自己个人账户下的仓库（所有权属于自己）<br><br>图中２表示自己参与的仓库(所有权不属于自己)<br></p>
+<p><strong>注意</strong><br><br>自己个人账户下的仓库一般为自己创建，或者其他仓库所有者转让仓库。自己对该仓库具有全部权限（写入／删除文件、增加成员、删除成员、合并分之、审核分之）</p>
+<hr>
+<p>######新建仓库<br><img src="./images/创建仓库.png" alt="创建仓库"></p>
+<hr>
+<p>在主面板中点击我的仓库右侧的”+”按钮后进入新建仓库页面，在此页面中我们需哟啊输入仓库的基本描述，并设置可见属性.<br><br><strong>注意</strong><br><br>在创建仓库按钮的上方有一个复选框“使用选定文件和模板初始化仓库”。<br>这里如果不选，则会生成一个空仓库，我们需要在本地生成一个仓库（或者原有仓库），然后将本地仓库的远程仓库地址设置成我们在Gogs中新建的仓库地址。</p>
+<hr>
+<p>######仓库使用基介绍<br><img src="./images/仓库介绍.png" alt="仓库介绍"></p>
+<hr>
+<p>图中１仓库中的文件管理页面<br><br>图中２仓库的工单管理页面<br><br>图中３仓库的合并请求管理（代码审查、合并）<br><br>图中４查看代码的分支<br><br>图中５在浏览器中上传和下载文件（不依赖Git）<br><br>图中６当前仓库的远程地址（将其拷贝下来，将本地的对应仓库的origin地址设置）<br><br>图中７当前仓库的文件阅览<br></p>
+<hr>
+<p>######基于浏览器进行文件上传下载<br><img src="./images/浏览器上传.png" alt="仓库介绍"><br>可以直接在浏览器中进行文件上传</p>
+<hr>
+<p><img src="./images/gog文档在线查看.png" alt="在线"><br>可以直接在浏览器查看对应文档，或者下载文档</p>
+<hr>
+<p>######工单管理<br>省略。。。</p>
+<p>######合并管理<br>省略。。。</p>
+<hr>
+<p>####(4)组织管理<br>Git魅力不仅仅体现在对代码的管理，还有有效的管理团队合作上<br></p>
+<p>######组织管理介绍<br>Gogs也专门提供了<strong>组织</strong>管理功能（组织可以代表一个公司，可以在<strong>组织</strong>下建立仓库、添加组织成员，然后通过创建和设置团队，将组织名下的仓库分别授权给不同的成员）</p>
+<hr>
+<p><img src="./images/组织管理.png" alt="仓库组织"><br>图中点击”我的组织”后面的“＋”号可以新建组织</p>
+<hr>
+<p><img src="./images/组织页面.png" alt="组织页面"></p>
+<hr>
+<p>图中１显示当前组织下的仓库，点击创建新仓库可以添加新的组织<br><br>图中２显示当前组织中的成员，可以点击邀请其他人，添加新的成员<br><br>图中３显示当前组织下设置的团队（每个团对可以分别添加组织下的不同仓库和不同成员，并设置该团队权限（写入、阅读））<br></p>
+<hr>
+<p><img src="./images/团队设置.png" alt="团队设置"></p>
+<hr>
+<p>图中１显示该团队有４名成员<br><br>图中２显示该团队拥有当前组织的２个仓库的权限<br><br>图中３显示该团队对yo拥有的２个仓库具有读取和写入的权限<br></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Android优化总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -958,621 +1731,6 @@ xAxis.setValueFormatter(new IAxisValueFormatter() {
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Java运算注意事项/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Baronli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Baronli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/03/Java运算注意事项/" itemprop="url">未命名</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:45:27+08:00">
-                2017-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <hr>
-<h2 id="title-Java运算注意事项"><a href="#title-Java运算注意事项" class="headerlink" title="title:Java运算注意事项"></a>title:Java运算注意事项</h2>
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2017/08/03/Java运算注意事项/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/Java泛型详解/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Baronli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Baronli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/03/Java泛型详解/" itemprop="url">Java运算注意事项</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:45:20+08:00">
-                2017-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>###Java泛型<br>在Java开发中，泛型是我们非常频繁使用的知识，它常常与集合一起结伴。<br>泛型是在ＪＤＫ１．５出现的。<br><br><strong>为什么需要它？</strong><br><br>编译期检查，参数化.<br>我们以集合Ｌｉｓｔ为例<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List             mList;</div><div class="line">List&lt;String&gt;     mListByString ;</div></pre></td></tr></table></figure></p>
-<p>一个是原始的集合Ｌｉｓｔ，一个是泛型化的Ｌｉｓｔ<br>（泛型是在ＪＤＫ１．５出现，官方推荐从那时起尽量使用泛型化的集合，但原生的集合依然可以使用Ｌｉｓｔ、Ｓｅｔ，主要是为了向前兼容，业界已经存在了大量使用原生集合的代码）<br><br>那么上面的两种不同格式有何区别？<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mList.add(<span class="string">"123"</span>);   　　　　　<span class="comment">//正常</span></div><div class="line">mList.add(<span class="number">123</span>);   　　　　　　<span class="comment">//正常</span></div><div class="line"></div><div class="line">mListByString.add(<span class="string">"123"</span>);　　<span class="comment">//正常</span></div><div class="line">mListByString.add(<span class="number">123</span>);     <span class="comment">//编译报错</span></div></pre></td></tr></table></figure></p>
-<p>上面我分别往mList和mListByString添加一个String和一个int,添加了２个类型不同的值，<br><br>当然正常情况下，我们可能只希望添加String类型的值，但无意中就像样例中一样添加了一个ｉｎｔ类型的值。其中原生Ｌｉｓt编译正常，而以String 为参数的泛型List则在编译时报错。</p>
-<p>下面是我们在其他地方使用上面两个Ｌｉｓｔ<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String name1=mList.get(<span class="number">0</span>);</div><div class="line">String name2=mList.get(<span class="number">1</span>);</div><div class="line"></div><div class="line">String name3=mListByString.get(<span class="number">0</span>);</div><div class="line">String name4=mListByString.get(<span class="number">1</span>);</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/AndroidStudio使用记录/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Baronli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Baronli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/03/AndroidStudio使用记录/" itemprop="url">Android Studio使用记录</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:44:27+08:00">
-                2017-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a> 
-<p>#####Android Studio使用记录<br> 解决External file changes sync may be slow: The current inotify(7) watch limit is too low. More details. (show balloon)<br> s<br>sudo sysctl fs.inotify.max_user_watches=5242881</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/AndroidSDK版本中方法/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Baronli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Baronli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/03/AndroidSDK版本中方法/" itemprop="url">Android Sdk版本问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:44:22+08:00">
-                2017-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a> 
-<p>####Android Sdk版本问题<br>（１）<br>Notification notification2 = new Notification(R.mipmap.icon_demo, “通知测试”, System.currentTimeMillis());<br>notification2.setLatestEventInfo(getActivity(),”testTitle”,”testContent”,null);</p>
-<p>结果androidstudio报错，setLatestEventInfo该方法找不到，实际上该方法存在于源码中</p>
-<p>FloatMath<br>Android6.0使用 Math.floor 代替 FloatMath.floor 即可，见下图：</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/03/AndroidHttp中文乱码问题/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Baronli">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/uploads/icon.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Baronli">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2017/08/03/AndroidHttp中文乱码问题/" itemprop="url">Android中文乱码问题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-03T11:44:17+08:00">
-                2017-08-03
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <a id="more"></a> 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">URL url = <span class="keyword">new</span> URL(RequestURL);</div><div class="line">HttpURLConnection conn = (HttpURLConnection) url.openConnection();</div><div class="line"></div><div class="line">InputStream input = conn.getInputStream();</div><div class="line">StringBuffer sb1 = <span class="keyword">new</span> StringBuffer();</div><div class="line"><span class="keyword">int</span> ss;</div><div class="line"><span class="keyword">while</span> ((ss = input.read()) != -<span class="number">1</span>) &#123;</div><div class="line">	sb1.append((<span class="keyword">char</span>) ss);</div><div class="line">result = sb1.toString();</div></pre></td></tr></table></figure>
-<p>在这样的操作下，有可能会出现接收到的中文是乱码的，比如后台返回的格式是”UTF-8”，接收到的中文就会是乱码</p>
-<p>解决方法进行转码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">InputStream input = conn.getInputStream();</div><div class="line">InputStreamReader reader=<span class="keyword">new</span> InputStreamReader(input,<span class="string">"UTF-8"</span>);</div><div class="line">StringBuffer sb1 = <span class="keyword">new</span> StringBuffer();</div><div class="line"><span class="keyword">int</span> ss;</div><div class="line"><span class="keyword">while</span> ((ss = reader.read()) != -<span class="number">1</span>) &#123;</div><div class="line">	sb1.append((<span class="keyword">char</span>) ss);</div><div class="line">result = sb1.toString();</div></pre></td></tr></table></figure></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1623,7 +1781,7 @@ xAxis.setValueFormatter(new IAxisValueFormatter() {
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -1634,7 +1792,7 @@ xAxis.setValueFormatter(new IAxisValueFormatter() {
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>

@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-08-03T06:22:44.094Z</updated>
+  <updated>2017-08-07T00:20:24.687Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,304 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android在AndroidStudio中添加Module依赖的注意事项</title>
+    <link href="http://yoursite.com/2017/08/07/Android%E5%9C%A8AndroidStudio%E4%B8%AD%E5%BC%95%E7%94%A8Module%E4%BE%9D%E8%B5%96%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
+    <id>http://yoursite.com/2017/08/07/Android在AndroidStudio中引用Module依赖注意事项/</id>
+    <published>2017-08-07T00:20:24.687Z</published>
+    <updated>2017-08-07T00:20:24.687Z</updated>
+    
+    <content type="html"><![CDATA[<p>####Android在AndroidStudio中添加Module依赖的注意事项<br>我们在开发过程中常常会有一些模块需要作为依赖，或者将部分功能单独抽出作为一个library使用，在Android studio中，我们可以通过建立多个module进行实现。<br>首先我们看看作为普通module和作为library的module的区别，<br>主要在build.gradle中<br><br>app的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.android.application'</span></div><div class="line">defaultConfig &#123;</div><div class="line">        applicationId <span class="string">"com.julit.elevator_maint"</span></div><div class="line">        minSdkVersion <span class="number">17</span></div><div class="line">        targetSdkVersion <span class="number">21</span></div><div class="line">        ...</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>作为library的module<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">apply plugin: <span class="string">'com.android.library'</span></div><div class="line">defaultConfig &#123;</div><div class="line">        minSdkVersion <span class="number">17</span></div><div class="line">        targetSdkVersion <span class="number">21</span></div><div class="line">        ...</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>添加依赖　打开Project的Project Structure，可以看到目前项目下面有３个module（都是可以运行的module），目前选中了app（一般项目在创建时的默认module）然后我们点击右上角的Dependencies可以看到右侧有加号，点击在此我们可以添加３种类型的依赖，选择　Module Dependency<br><img src="http://img.blog.csdn.net/20170613140951848?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvdTAxMDIyODQ0OA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" alt="这里写图片描述"><br>然后我们就成功的添加了依赖<br><br><strong>踩坑记录</strong><br><br>依照上面的过程，我们可以很容易地给主程序添加依赖，但是存在一些坑<br></p>
+<p>我们都会遇到的一些问题，在此我将自己的一些遇到的一些问题的解决办法进行记录和说明，希望减少这种问题的遇到。</p>
+<p>######（1）Manifest merger failed with multiple errors<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Error:Execution failed <span class="keyword">for</span> task <span class="string">':app:processDebugManifest'</span>.</div><div class="line">&gt; Manifest merger failed with multiple errors, see logs</div></pre></td></tr></table></figure></p>
+<p><strong>原因：</strong><br>AS的Gradle插件默认会启用Manifest Merger Tool，如果Library项目中也定义了与主项目相同的属性（例如默认生成的Android:icon和android:theme），则此时会合并失败，并报上面的错误。<br><br>或者是因为<br>app’s minSdk is higher than any library’s minSdk.<br>要求app’s minSdk &gt;= libraries minSdk<br><br><br>解决方法有以下2种：<br><br>方法1：在Manifest.xml的application标签下添加tools:replace=”android:icon, android:theme”（多个属性用,隔开，并且在manifest根标签上加入xmlns:tools=”<a href="http://schemas.android.com/tools&quot;）" target="_blank" rel="external">http://schemas.android.com/tools&quot;）</a><br><br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;manifest xmlns:android=<span class="string">"http://schemas.android.com/apk/res/android"</span></div><div class="line">    xmlns:tools=<span class="string">"http://schemas.android.com/tools"</span>  <span class="comment">// add tools line here </span></div><div class="line">    <span class="keyword">package</span>=<span class="string">"yourpackage"</span>&gt;</div><div class="line">    &lt;application</div><div class="line">        android:allowBackup=<span class="string">"true"</span></div><div class="line">        android:icon=<span class="string">"@mipmap/ic_launcher"</span></div><div class="line">        android:label=<span class="string">"@string/app_name"</span></div><div class="line">        android:supportsRtl=<span class="string">"true"</span></div><div class="line">        android:theme=<span class="string">"@style/AppTheme"</span></div><div class="line">        tools:replace=<span class="string">"android:icon"</span>&gt;  </div><div class="line">.....</div><div class="line">&lt;/application&gt;</div><div class="line">&lt;/manifest&gt;</div></pre></td></tr></table></figure></p>
+<p>方法2：在build.gradle根标签上加上useOldManifestMerger true,但是我们在使用这种方法时有可能会爆出下面的错误<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Error:(<span class="number">4</span>, <span class="number">0</span>) Gradle DSL method not found: <span class="string">'useOldManifestMerger()'</span></div><div class="line">Possible causes:&lt;ul&gt;&lt;li&gt;The project <span class="string">'JuliAPP_AS'</span> may be using a version of the Android Gradle plug-<span class="function">in that does not contain the <span class="title">method</span> <span class="params">(e.g. <span class="string">'testCompile'</span> was added in <span class="number">1.1</span><span class="number">.0</span>)</span>.</span></div><div class="line">&lt;a href="fixGradleElements"&gt;Upgrade plugin to version 2.3.2 and sync project&lt;/a&gt;&lt;/li&gt;&lt;li&gt;The project 'JuliAPP_AS' may be using a version of Gradle that does not contain the method.</div><div class="line">&lt;a href="open.wrapper.file"&gt;Open Gradle wrapper file&lt;/a&gt;&lt;/li&gt;&lt;li&gt;The build file may be missing a Gradle plugin.</div><div class="line">&lt;a href="apply.gradle.plugin"&gt;Apply Gradle plugin&lt;/a&gt;&lt;/li&gt;</div><div class="line"></div><div class="line">Error:(<span class="number">10</span>, <span class="number">0</span>) <span class="function">Could not find method <span class="title">useOldManifestMerger</span><span class="params">()</span> <span class="keyword">for</span> arguments [<span class="keyword">true</span>] on object of type com.android.build.gradle.AppExtension.</span></div></pre></td></tr></table></figure></p>
+<p>######（2）APP安装时出现2个图标<br>原因是我们在AndroidMamifest.xml中的<application的标签依然存在重复的属性，我们在build.gradle中将application改成了library但是此处如果没改会导致2个图标。 <figure="" class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">"com.juli.commonlibrary"</span>&gt;</span></div><div class="line">      <span class="tag">&lt;<span class="name">application</span>  <span class="attr">android:allowBackup</span>=<span class="string">"true"</span> <span class="attr">android:icon</span>=<span class="string">"@mipmap/ic_launcher"</span></span></div><div class="line"><span class="tag">         <span class="attr">android:label</span>=<span class="string">"@string/app_name"</span> <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span> &gt;</span></div><div class="line">         <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">"com.juli.commonlibrary.PhotoUtil.ImageGetActivity"</span>&gt;</span></div><div class="line">             <span class="tag">&lt;<span class="name">intent-filter</span>&gt;</span></div><div class="line">                 <span class="tag">&lt;<span class="name">action</span> <span class="attr">android:name</span>=<span class="string">"android.intent.action.MAIN"</span> /&gt;</span></div><div class="line">                 <span class="tag">&lt;<span class="name">category</span> <span class="attr">android:name</span>=<span class="string">"android.intent.category.LAUNCHER"</span> /&gt;</span></div><div class="line">             <span class="tag">&lt;/<span class="name">intent-filter</span>&gt;</span></div><div class="line">         <span class="tag">&lt;/<span class="name">activity</span>&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">application</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></div></pre></td></tr></table></application的标签依然存在重复的属性，我们在build.gradle中将application改成了library但是此处如果没改会导致2个图标。></p>
+<p>修改成<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version="1.0" encoding="utf-8"?&gt;</div><div class="line"><span class="tag">&lt;<span class="name">manifest</span> <span class="attr">xmlns:android</span>=<span class="string">"http://schemas.android.com/apk/res/android"</span></span></div><div class="line"><span class="tag">    <span class="attr">package</span>=<span class="string">"com.juli.commonlibrary"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="name">application</span>  <span class="attr">android:allowBackup</span>=<span class="string">"true"</span> <span class="attr">android:supportsRtl</span>=<span class="string">"true"</span> &gt;</span></div><div class="line">   <span class="tag">&lt;<span class="name">activity</span> <span class="attr">android:name</span>=<span class="string">"com.juli.commonlibrary.PhotoUtil.ImageGetActivity"</span>/&gt;</span></div><div class="line">     <span class="tag">&lt;/<span class="name">application</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="name">manifest</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<p>但是在使用第二种方法时也有可能爆出上面的问题，</p>
+<p>######（３）报名相同导致冲突　A library uses the same package as this project<br><strong>解决方法</strong>在Build.gradle中添加enforceUniquePackageName = false，如下<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">android &#123;</div><div class="line">    compileSdkVersion <span class="number">23</span></div><div class="line">    buildToolsVersion <span class="string">"23.0.1"</span></div><div class="line">    enforceUniquePackageName = <span class="keyword">false</span></div><div class="line">    ...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>####Android studio其他使用注意事项（借鉴）</p>
+<p>1、每次保存的时候，每行多余的空格和TAB会被自动删除（例如结尾、空行的多余空格或TAB）<br>特别是每次准备提交SVN，Review代码时候你就蛋疼了，显示一堆不相关的更改，看的眼花。<br><br><strong>解决方法：</strong><br>Settings-&gt;IDE Settings-&gt;Editor-&gt;Other-&gt;Strip trailing spaces on Save-&gt;None<br><br><br><br>2、Library Project里面的BuildConfig.DEBUG永远都是false。这是Android Studio的一个已知问题，某Google的攻城狮说，Library projects目前只会生成release的包。<br>Issue 52962: <a href="https://code.google.com/p/android/issues/detail?id=52962" target="_blank" rel="external">https://code.google.com/p/android/issues/detail?id=52962</a><br><br><strong>解决方法：</strong>（某Google的攻城狮推荐的方法）<br>Workaround: instaed of BuildConfig.DEBUG create another boolean variable at lib-project’s e.g. BuildConfig.RELEASE and link it with application’s buildType.<br><a href="https://gist.github.com/almozavr/d59e770d2a6386061fcb" target="_blank" rel="external">https://gist.github.com/almozavr/d59e770d2a6386061fcb</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;####Android在AndroidStudio中添加Module依赖的注意事项&lt;br&gt;我们在开发过程中常常会有一些模块需要作为依赖，或者将部分功能单独抽出作为一个library使用，在Android studio中，我们可以通过建立多个module进行实现。&lt;br&gt;首先
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java运算注意事项</title>
+    <link href="http://yoursite.com/2017/08/07/Java%E8%BF%90%E7%AE%97%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
+    <id>http://yoursite.com/2017/08/07/Java运算注意事项/</id>
+    <published>2017-08-07T00:20:12.738Z</published>
+    <updated>2017-08-07T00:20:12.738Z</updated>
+    
+    <content type="html"><![CDATA[<p>#####java 两个整数相除保留两位小数</p>
+<p>java中，当两个整数相除时，由于小数点以后的数字会被截断，运算结果将为整数，此时若希望得到运算结果为浮点数，必须将两整数其一或是两者都强制转换为浮点数。<br>例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">float</span>)a/b <span class="comment">// 将整数其中一个强制转换为浮点数，再与另一个整数相除</span></div><div class="line">a/(<span class="keyword">float</span>)b</div><div class="line">(<span class="keyword">float</span>)a/(<span class="keyword">float</span>)b <span class="comment">// 将两个整数同时强制转换为浮点数后再相除</span></div><div class="line">Java代码  </div><div class="line"><span class="keyword">float</span> num= (<span class="keyword">float</span>)<span class="number">2</span>/<span class="number">3</span>;   </div><div class="line">DecimalFormat df = <span class="keyword">new</span> DecimalFormat(<span class="string">"0.00"</span>);<span class="comment">//格式化小数   </span></div><div class="line">String s = df.format(num);<span class="comment">//返回的是String类型 </span></div><div class="line"><span class="keyword">double</span> data=<span class="number">5</span>/<span class="number">3</span>;　　<span class="comment">//data =1</span></div><div class="line"><span class="keyword">float</span> data2=<span class="number">5</span>/<span class="number">3</span>;  <span class="comment">//data2=1</span></div><div class="line"></div><div class="line"><span class="keyword">double</span> data3=(<span class="keyword">double</span>) <span class="number">5</span>/<span class="number">3</span> <span class="comment">//data3=1.6666666666666667</span></div><div class="line"><span class="keyword">double</span> data3= <span class="number">5</span>/<span class="number">3</span>d        <span class="comment">//data3=1.6666666666666667</span></div><div class="line"><span class="keyword">float</span> data4=(<span class="keyword">float</span>) <span class="number">5</span>/<span class="number">3</span>   <span class="comment">//data4=1.6666666</span></div><div class="line"><span class="keyword">float</span> data5= <span class="number">5</span>/<span class="number">3f</span>         <span class="comment">//data5=1.6666666</span></div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;#####java 两个整数相除保留两位小数&lt;/p&gt;
+&lt;p&gt;java中，当两个整数相除时，由于小数点以后的数字会被截断，运算结果将为整数，此时若希望得到运算结果为浮点数，必须将两整数其一或是两者都强制转换为浮点数。&lt;br&gt;例如：&lt;br&gt;&lt;figure class=&quot;high
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Git命令详解</title>
+    <link href="http://yoursite.com/2017/08/06/Git%E6%93%8D%E4%BD%9C/"/>
+    <id>http://yoursite.com/2017/08/06/Git操作/</id>
+    <published>2017-08-06T10:34:07.679Z</published>
+    <updated>2017-08-06T10:34:07.679Z</updated>
+    
+    <content type="html"><![CDATA[<p>这个是使用nano进行编辑提交的页面，退出方法为：</p>
+<p>Ctrl + X然后输入y再然后回车，就可以退出了</p>
+<p>如果你想把默认编辑器换成别的：</p>
+<p>在GIT配置中设置 core.editor: git config –global core.editor “vim”</p>
+<p>参考：</p>
+<p><a href="http://stackoverflow.com/questions/2596805/how-do-i-make-git-use-the-editor-of-my-choice-for-commits" target="_blank" rel="external">http://stackoverflow.com/questions/2596805/how-do-i-make-git-use-the-editor-of-my-choice-for-commits</a></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这个是使用nano进行编辑提交的页面，退出方法为：&lt;/p&gt;
+&lt;p&gt;Ctrl + X然后输入y再然后回车，就可以退出了&lt;/p&gt;
+&lt;p&gt;如果你想把默认编辑器换成别的：&lt;/p&gt;
+&lt;p&gt;在GIT配置中设置 core.editor: git config –global core.e
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Java运算注意事项</title>
+    <link href="http://yoursite.com/2017/08/06/Java%E6%B3%9B%E5%9E%8B%E8%AF%A6%E8%A7%A3/"/>
+    <id>http://yoursite.com/2017/08/06/Java泛型详解/</id>
+    <published>2017-08-06T10:33:13.266Z</published>
+    <updated>2017-08-06T10:33:13.266Z</updated>
+    
+    <content type="html"><![CDATA[<p>###Java泛型<br>在Java开发中，泛型是我们非常频繁使用的知识，它常常与集合一起结伴。<br>泛型是在ＪＤＫ１．５出现的。<br><br><strong>为什么需要它？</strong><br><br>编译期检查，参数化.<br>我们以集合Ｌｉｓｔ为例<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List             mList;</div><div class="line">List&lt;String&gt;     mListByString ;</div></pre></td></tr></table></figure></p>
+<p>一个是原始的集合Ｌｉｓｔ，一个是泛型化的Ｌｉｓｔ<br>（泛型是在ＪＤＫ１．５出现，官方推荐从那时起尽量使用泛型化的集合，但原生的集合依然可以使用Ｌｉｓｔ、Ｓｅｔ，主要是为了向前兼容，业界已经存在了大量使用原生集合的代码）<br><br>那么上面的两种不同格式有何区别？<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mList.add(<span class="string">"123"</span>);   　　　　　<span class="comment">//正常</span></div><div class="line">mList.add(<span class="number">123</span>);   　　　　　　<span class="comment">//正常</span></div><div class="line"></div><div class="line">mListByString.add(<span class="string">"123"</span>);　　<span class="comment">//正常</span></div><div class="line">mListByString.add(<span class="number">123</span>);     <span class="comment">//编译报错</span></div></pre></td></tr></table></figure></p>
+<p>上面我分别往mList和mListByString添加一个String和一个int,添加了２个类型不同的值，<br><br>当然正常情况下，我们可能只希望添加String类型的值，但无意中就像样例中一样添加了一个ｉｎｔ类型的值。其中原生Ｌｉｓt编译正常，而以String 为参数的泛型List则在编译时报错。</p>
+<p>下面是我们在其他地方使用上面两个Ｌｉｓｔ<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String name1=mList.get(<span class="number">0</span>);</div><div class="line">String name2=mList.get(<span class="number">1</span>);</div><div class="line"></div><div class="line">String name3=mListByString.get(<span class="number">0</span>);</div><div class="line">String name4=mListByString.get(<span class="number">1</span>);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###Java泛型&lt;br&gt;在Java开发中，泛型是我们非常频繁使用的知识，它常常与集合一起结伴。&lt;br&gt;泛型是在ＪＤＫ１．５出现的。&lt;br&gt;&lt;br&gt;&lt;strong&gt;为什么需要它？&lt;/strong&gt;&lt;br&gt;&lt;br&gt;编译期检查，参数化.&lt;br&gt;我们以集合Ｌｉｓｔ为例&lt;br&gt;&lt;b
+    
+    </summary>
+    
+      <category term="java" scheme="http://yoursite.com/categories/java/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>RecyclerView高度适应问题</title>
+    <link href="http://yoursite.com/2017/08/06/RecyclerView%E9%AB%98%E5%BA%A6%E9%80%82%E5%BA%94%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2017/08/06/RecyclerView高度适应问题/</id>
+    <published>2017-08-05T16:00:00.000Z</published>
+    <updated>2017-08-06T10:20:30.871Z</updated>
+    
+    <content type="html"><![CDATA[<p>RecyclerView高度适应问题</p>
+<p>#####ItemView大小固定<br>ItemView大小固定的情况下，根据ItemView的宽高调整recyclerview的宽高，以达到recyclerview刚好显示N行/列数据的目的：<br>原理是重写LayoutManager的onMeasure方法，计算itemview的宽高，进而计算出recyclerview的宽高。<br>比如，一个垂直列表，希望recyclerview刚好显示三行，这样写：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">recyclerView.setLayoutManager(<span class="keyword">new</span> LinearLayoutManager(<span class="keyword">this</span>) &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onMeasure</span><span class="params">(RecyclerView.Recycler recycler, RecyclerView.State state, <span class="keyword">int</span> widthSpec, <span class="keyword">int</span> heightSpec)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (getChildCount() &gt; <span class="number">0</span>) &#123;</div><div class="line">            View firstChildView = recycler.getViewForPosition(<span class="number">0</span>);</div><div class="line">            measureChild(firstChildView, widthSpec, heightSpec);</div><div class="line">            setMeasuredDimension(View.MeasureSpec.getSize(widthSpec), firstChildView.getMeasuredHeight()*<span class="number">3</span>);</div><div class="line">        &#125; <span class="keyword">else</span> &#123;</div><div class="line">            <span class="keyword">super</span>.onMeasure(recycler, state, widthSpec, heightSpec);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<p>#####ItemView大小不固定</p>
+<p>#####ItemView适应RecyclerView<br>RecyclerView大小固定的情况下，根据RecyclerView的宽高设置ItemView的宽高，以达到recyclerview刚好显示N行/列数据的目的：<br>在原理是先计算出RecyclerView的宽高，然后在Adapter的onCreateViewHolder中设置view的高度：<br>比如一个垂直列表，希望recyclerview刚好显示三行，这样写：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@Override</span></div><div class="line"><span class="keyword">public</span> ClubServiceAdapter.<span class="function">ServiceItemViewHolder <span class="title">onCreateViewHolder</span><span class="params">(ViewGroup parent, <span class="keyword">int</span> viewType)</span> </span>&#123;</div><div class="line">    View view = LayoutInflater.from(parent.getContext()).inflate(布局文件, parent, <span class="keyword">false</span>);</div><div class="line">    view.getLayoutParams().height = mRecyclerViewHeight/<span class="number">3</span>;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ServiceItemViewHolder(view);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>#####设置ItemView的间隔高宽</p>
+<p>重写ItemDecoration的getItemOffsets函数即可：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">recycleview.addItemDecoration(<span class="keyword">new</span> RecyclerView.ItemDecoration() &#123;</div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">getItemOffsets</span><span class="params">(Rect outRect, View view, RecyclerView parent, RecyclerView.State state)</span> </span>&#123;</div><div class="line">        <span class="keyword">super</span>.getItemOffsets(outRect, view, parent, state);</div><div class="line">        outRect.set(<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>);<span class="comment">//设置itemView中内容相对边框左，上，右，下距离</span></div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;RecyclerView高度适应问题&lt;/p&gt;
+&lt;p&gt;#####ItemView大小固定&lt;br&gt;ItemView大小固定的情况下，根据ItemView的宽高调整recyclerview的宽高，以达到recyclerview刚好显示N行/列数据的目的：&lt;br&gt;原理是重写Layo
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android的Fragment详解</title>
+    <link href="http://yoursite.com/2017/08/04/FragmentTransaction%E4%BD%BF%E7%94%A8%E8%AF%A6%E7%BB%86%E8%A7%A3%E6%9E%90/"/>
+    <id>http://yoursite.com/2017/08/04/FragmentTransaction使用详细解析/</id>
+    <published>2017-08-03T16:00:00.000Z</published>
+    <updated>2017-08-06T10:35:32.124Z</updated>
+    
+    <content type="html"><![CDATA[<p>###FragmentTransaction使用详细解析</p>
+<p>####先来一个完整操作Fragment的例子<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mFragmentManager = getSupportFragmentManager();</div><div class="line">mFragmentTransaction = mFragmentManager.beginTransaction();</div><div class="line">mFragmentTransaction.add(R.id.id_main_content,fragment1);</div><div class="line">mFragmentTransaction.commit();</div></pre></td></tr></table></figure></p>
+<p>我们是通过FragmentManager来对Fragment进行管理，其中API3.0之后可以在Activity通过getFragmentManager方法获取到FragmentManager实例，当然也可以通过Support包的getSupportFragmentManager方法获取。<br>其中我们是通过FragmentTransaction(事物)来进行一次完整的针对Fragment操作的（添加、替换、删除Fragment）.</p>
+<p>######问题–如果多次执行add()方法会怎么样子？<br>导致重叠，如下图片<br><img src="/images/两个fragment叠加.png" alt="样例"></p>
+<p>####添加、替换、删除、隐藏、获取Fragment</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###FragmentTransaction使用详细解析&lt;/p&gt;
+&lt;p&gt;####先来一个完整操作Fragment的例子&lt;br&gt;&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div cla
+    
+    </summary>
+    
+      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android开发错误集锦</title>
+    <link href="http://yoursite.com/2017/08/03/%E5%BC%80%E5%8F%91%E9%94%99%E8%AF%AF%E9%9B%86%E9%94%A6/"/>
+    <id>http://yoursite.com/2017/08/03/开发错误集锦/</id>
+    <published>2017-08-03T13:03:24.261Z</published>
+    <updated>2017-08-03T13:03:24.261Z</updated>
+    
+    <content type="html"><![CDATA[<p>###Android开发错误集锦</p>
+<p>#####１、NULLPoint空指针<br>Activity生命周期结束，导致其中的持有Actiｖity引用的定时任务的引用变为ｎｕｌｌ。</p>
+<p>####2、ClassCastException<br>多出现在强制类型转变上</p>
+<p>#####３、命令行启动avd报错<br>在tools的目录下   ./emulator -netdelay none -netspeed full -avd Nexus23<br>可能报错   </p>
+<p>######./emulator -netdelay none -netspeed full -avd api25</p>
+<p>emulator: ERROR: This AVD’s configuration is missing a kernel file! Please ensure the file “kernel-ranchu” is in the same location as your system image.<br>emulator: ERROR: ANDROID_SDK_ROOT is undefined</p>
+<p>解决方法 ：给root添加<br>export PATH=/home/stormbaron/android-sdk-linux/platform-tools/:$PATH</p>
+<p>######新的问题<br> libGL error: unable to load driver: i965_dri.so<br>libGL error: driver pointer missing<br>libGL error: failed to load driver: i965<br>libGL error: unable to load driver: i965_dri.so<br>libGL error: driver pointer missing<br>libGL error: failed to load driver: i965<br>libGL error: unable to load driver: swrast_dri.so<br>libGL error: failed to load driver: swrast<br>X Error of failed request:  GLXBadContext<br>  Major opcode of failed request:  155 (GLX)<br>  Minor opcode of failed request:  6 (X_GLXIsDirect)<br>  Serial number of failed request:  55<br>  Current serial number in output stream:  54<br>emulator: ERROR: This AVD’s configuration is missing a kernel file! Please ensure the file “kernel-ranchu” is in the same location as your system image.<br>emulator: ERROR: ANDROID_SDK_ROOT is undefined<br>解决方法<br> Rather than launching the emulator from Android Studio, open the terminal and cd into the tools directory withing your Android SDK directory - mine is ~/Android/Sdk/tools. From there run the command:<br></p>
+<p>LD_PRELOAD=’/usr/$LIB/libstdc++.so.6’ DISPLAY=:0 ./emulator -avd <insert avd="" name="" here="">    </insert></p>
+<p>####４、Spinner点击item无反应<br>原因：adapter的list来源于异步线程执行的网络请求，可能导致adpter异常，将list换成一个固定的列表值后正常。</p>
+<p>####５、The error of install apk<br><em>INSTALL_FAILED_NO_MATCHING_ABIS</em>  is when you are trying to install an app that has native libraries and it doesn’t have a native library for your cpu architecture. For example if you compiled an app for armv7 and are trying to install it on an emulator that uses the Intel architecture instead it will not work.　　</p>
+<p>####６、java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState</p>
+<p>###Android Studio</p>
+<p>####1、多个Module依赖了相同的第三方包，在打包编译时会爆出重复的错误。<br>涉及compile,provided,apk之间的区别，compile是指该第三方包始终被需要（编译、打包、发布、测试）<br>provided是指该第三方包编译时需要，不会被打包进apk中</p>
+<p>####2、java.lang.SecurityException: MODE_WORLD_READABLE no longer supported<br>在新版本7.0的Android API中在进行getSharedPreferences时不再支持<br>4中模式：</p>
+<p>四种模式，分别为：<br>Context.MODE_PRIVATE    = 0<br>Context.MODE_APPEND    = 32768<br>Context.MODE_WORLD_READABLE = 1<br>Context.MODE_WORLD_WRITEABLE = 2<br>7.0后<br>代码调用，存放在data/data/包名/xxx<br>目录下的文件设置<br>Context.MODE_WORLD_READABLE = 1<br>Context.MODE_WORLD_WRITEABLE = 2<br>会抛安全异常！！！</p>
+<p>改用<br>MODE_PRIVATE</p>
+<p>####3、android.database.sqlite.SQLiteException: table videoinfo_table already exists (code 1): , while compiling: create table videoinfo_table(_id integer primary key autoincrement,title text,path text,imagePath text,size real,position real,duration real)</p>
+<p>####4、Android studio 打包<br>Error:(11) Error: “main_title” is not translated in “en” (English) [MissingTranslation]<br>Error:Execution failed for task ‘:app:lintVitalRelease’.</p>
+<blockquote>
+<p>Lint found fatal errors while assembling a release target.<br>  To proceed, either fix the issues identified by lint, or modify your build script as follows:<br>  …<br>  android {<br>      lintOptions {<br>          checkReleaseBuilds false<br>          // Or, if you prefer, you can continue to check for errors in release builds,<br>          // but continue the build even when errors are found:<br>          abortOnError false<br>      }<br>  }<br>  …<br>在打包的时候String.xml 中出现了问题<br>在build.gradle<br>   //添加如下配置就ok了<br>    lintOptions {<br>        checkReleaseBuilds false<br>        abortOnError false<br>    }</p>
+</blockquote>
+<p>####５、Adb 安装APK时报错<br>打开cmd 跳转到adb.exe所在的目录文件夹下 （D:\android-sdk-windows\platform-tools）：<br>adb install  abc.apk(如果此apk没有在当前目录下，还需要带上绝对路径，否则无法找到此apk)<br>这些错误基本是在 cmd 命令行安装时遇到的。</p>
+<p>INSTALL_FAILED_ALREADY_EXISTS                 程序已经存在<br>INSTALL_FAILED_INVALID_APK                     无效的APK<br>INSTALL_FAILED_INVALID_URI                     无效的链接<br>INSTALL_FAILED_INSUFFICIENT_STORAGE          没有足够的存储空间<br>INSTALL_FAILED_DUPLICATE_PACKAGE             已存在同名程序<br>INSTALL_FAILED_NO_SHARED_USER                要求的共享用户不存在<br>INSTALL_FAILED_UPDATE_INCOMPATIBLE           版本不能共存<br>INSTALL_FAILED_SHARED_USER_INCOMPATIBLE     需求的共享用户签名错误<br>INSTALL_FAILED_MISSING_SHARED_LIBRARY       需求的共享库已丢失<br>INSTALL_FAILED_REPLACE_COULDNT_DELETE      需求的共享库无效<br>INSTALL_FAILED_DEXOPT                          dex优化验证失败<br>INSTALL_FAILED_OLDER_SDK                      系统版本过旧<br>INSTALL_FAILED_CONFLICTING_PROVIDER          存在同名的内容提供者<br>INSTALL_FAILED_NEWER_SDK                      系统版本过新<br>INSTALL_FAILED_TEST_ONLY                      调用者不被允许测试的测试程序<br>INSTALL_FAILED_CPU_ABI_INCOMPATIBLE         包含的本机代码不兼容<br>CPU_ABIINSTALL_FAILED_MISSING_FEATURE       使用了一个无效的特性<br>INSTALL_FAILED_CONTAINER_ERROR              SD卡访问失败<br>INSTALL_FAILED_INVALID_INSTALL_LOCATION     无效的安装路径<br>INSTALL_FAILED_MEDIA_UNAVAILABLE            SD卡不存在<br>INSTALL_FAILED_INTERNAL_ERROR                系统问题导致安装失败<br>DEFAULT                                          未知错误</p>
+<p>###Fragment相关</p>
+<p>####(1)java.lang.IllegalStateException异常产生的原因及解决办法<br>Can not perform this action after onSaveInstanceState<br><br>错误类型大致为以下几种：<br>java.lang.IllegalStateException：Cannot   forward   a   response   that   is   already   committed <br><br>IllegalStateException：response already commited <br><br>IllegalStateException：getOutputStream() has already been called for this request<br>…..<br><br>IllegalStateException: Can not perform this action after onSaveInstanceState：<br><br><strong>解决办法</strong>：onSaveInstanceState方法是在该Activity即将被销毁前调用，来保存Activity数据的，如果在保存完状态后<br>再给它添加Fragment就会出错。解决办法就是把commit（）方法替换成 commitAllowingStateLoss()</p>
+<p>#####(２)java.lang.IllegalStateException<br>Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 1 column 37 path $.data<br><br>错误原因：该异常是由于服务器错误返回的JSON字符串和服务器正常下时返回的JSON字符串结构不同,导致利用Gson解析的时候报了一个异常:本该去解析集合却强制去解析对象所致.<br>解决办法:在使用Gson解析JSON时try cash一下,不报错按照正常逻辑继续解析,报异常则处理为请求失败逻辑即可.</p>
+<p>#####(3)FATAL EXCEPTION: main Process: com.julit.elevator_maint, PID: 2158<br>java.lang.RuntimeException: Unable to instantiate application<br> com.juli.elevator_ivms.app.DemoApp: java.lang.ClassNotFoundException: Didn’t find class “com.juli.elevator_ivms.app.DemoApp” on path: DexPathList[[zip file “/data/app/com.julit.elevator_maint-1/base.apk”],nativeLibraryDirectories=[/data/app/com.julit.elevator_maint-1/lib/arm, /data/app/com.julit.elevator_maint-1/base.apk!/lib/armeabi-v7a, /vendor/lib, /system/lib]]</p>
+<p>#####(4)错误：Error:Execution failed for task ‘:app:mergeDebugResources’.</p>
+<blockquote>
+<p>Some file crunching failed, see logs for details</p>
+</blockquote>
+<p>原因：这是图片格式错了</p>
+<p>解决：不要把图片的后缀直接修改为.png</p>
+<p>######(５)ERROR: 9-patch image<br>项目中有9-patch用ant脚本来编译的时候有错，如果直接用eclipse打包就没有问题<br> ERROR: 9-patch image /home/stormbaron/work/GitProject/Company/JuliSale_AS/app/src/main/res/drawable-hdpi/search_bar_edit_pressed.9.png malformed.<br>AAPT:        Frame pixels must be either solid or transparent (not intermediate alphas).<br>AAPT:        Found at pixel #15 along top edge.</p>
+<p>解决方案　：那张图有问题，.9.png图，顶部和左侧必须要设置拉伸区域（右侧和底部可以不设置）否则会报错</p>
+<p>######(６)<br> Execution failed for task ‘:app:transformResourcesWithMergeJavaResForDebug’.</p>
+<blockquote>
+<p>com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/LICENSE<br>      File1: /home/stormbaron/work/GitProject/Company/JuliSale_AS/app/libs/httpclient-4.3.1.jar<br>      File2: /home/stormbaron/work/GitProject/Company/JuliSale_AS/app/libs/httpcore-4.3.jar<br>貌似说两个包里面的文件重复了还是怎么的，谷歌了一番之后据说应该是 android studio 自身的bug<br>解决办法：<br>打开项目下面的 build.gradle 文件，在 android 代码块中添加下面代码<br>[sql] view plain copy<br>android {<br>    packagingOptions {<br>        exclude ‘META-INF/DEPENDENCIES’<br>        exclude ‘META-INF/NOTICE’<br>        exclude ‘META-INF/LICENSE’<br>        exclude ‘META-INF/LICENSE.txt’<br>        exclude ‘META-INF/NOTICE.txt’<br>    }<br>}  </p>
+</blockquote>
+<p>将这些文件全部排出掉就ok了</p>
+<p>######(７)git init 产生的目录解释<br>error: src refspec master does not match any.<br>引起该错误的原因是，目录中没有文件，空目录是不能提交上去的</p>
+<p>####网络权限问题（6.0之后的申请）<br>所有需要使用的权限都必须在Mainfest中进行申明，6.0以后的动态获取，只是针对你所申明的权限做的一个授权，如果你在Mainfest中没有进行申明的话，动态权限的框不会显示</p>
+<p>####Java Method Call Expected<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">incListener</span></span>&#123;&#125;</div><div class="line"><span class="comment">//报错的使用</span></div><div class="line">increase.addActionListener(incListener());</div><div class="line"><span class="comment">//正确的使用</span></div><div class="line">increase.addActionListener(<span class="keyword">new</span> incListener());</div></pre></td></tr></table></figure></p>
+<p>#####Android studio在使用打包时（buildToolsVersion）<br>Error:In <declare-styleable> ConstraintSet, unable to find attribute android:elevation<br>　　　这个问题主要和api的版本问题有关(原本是20报错，改成21后正常)<br>    compileSdkVersion 21<br>    buildToolsVersion “25.0.1”</declare-styleable></p>
+<p>####Activity与Fragment需要相匹配</p>
+<p>android.view.InflateException: Binary XML file line #9: Error inflating class fragment</p>
+<p>当我们用的Activity时</p>
+<p>应当  import android.app.Fragment.</p>
+<p>当我们用的FragmentActivity 或者appcompatactivity(待验证)</p>
+<p>应当 import android.support.v4.app.Fragment</p>
+<p>否则在Activity是无法识别android.support.v4.app.Fragment的</p>
+<p>####Fragment导致的空指针<br>java.lang.NullPointerException</p>
+<p>Attempt to write to field ‘int android.support.v4.app.Fragment.mNextAnim’ on a null object reference</p>
+<p>一个原因导致：在fragment为null的时候show或hide或remove了。所以在对Fragment进行操作前一定要进行判断。</p>
+<p>#####Gson错误<br>java.lang.IllegalStateException: Expected BEGIN_ARRAY but was BEGIN_OBJECT at line 1 column 2 path $<br>分析原因：在使用解析之前要先分析后台返回的是一个object还是一个array</p>
+<p>#####Retrofit错误<br> java.lang.IllegalStateException: Already executed.<br> at retrofit2.OkHttpCall.enqueue(OkHttpCall.java:84)<br><br>原因：多次执行call.enqueue</p>
+<p>java.lang.IllegalArgumentException: baseUrl must end in /: <a href="http://erp.joylive.com:10030/service.json" target="_blank" rel="external">http://erp.joylive.com:10030/service.json</a></p>
+<p>java.lang.IllegalArgumentException: Unable to create call adapter for interface retrofit2.Call<br>=0  WEBRESENDSEGS=0  WEBRECVSEGS=1  WEBERRSEGS=0  WEBOUTRSTS=0  WEBESTABLISRST=0  WEBRTTDURATION=0  WEBRTTSEGS=0  WEBSNDDUPACKS=0  suckTimes=0 recovage_times=5]</p>
+<p>####Android页面错误<br>android.view.WindowLeaked: Activity com.suda.julisale.utils.ImageGetActivity has leaked window com.android.internal.policy.impl.PhoneWindow$DecorView{4333be18 V.E….. R……D 0,0-684,192} that was originally added here</p>
+<p>多次调用Dialog的hide</p>
+<p>####调用Intent时，需要显性声明，否则报错（5.0系统以后）<br>java.lang.IllegalArgumentException:Service Intent must be explicit: Intent { act=com.easi.mobile.locator.MobileLocatorService }</p>
+<p>public class ShutdownBroadcastReceiver extends BroadcastReceiver {  </p>
+<pre><code>private static final String ACTION_SHUTDOWN = &quot;android.intent.action.ACTION_SHUTDOWN&quot;;  
+
+@Override  
+public void onReceive(Context context, Intent intent) {
+
+    if (intent.getAction().equals(ACTION_SHUTDOWN)) {
+
+
+        SharedPreferences sp = context.getSharedPreferences(&quot;MobileLocator&quot;, Context.MODE_PRIVATE);  
+        sp.edit().putString(&quot;instruct&quot;, &quot;exit&quot;).commit();  
+
+        context.stopService(new Intent(PushGpsInfoService.ACTION_MOBILE_LOCATOR_SERVICE));
+    }  
+
+}  
+</code></pre><p>}  </p>
+<h4 id="Drawerlayout在代码中控制打开和关闭时报错"><a href="#Drawerlayout在代码中控制打开和关闭时报错" class="headerlink" title="Drawerlayout在代码中控制打开和关闭时报错"></a>Drawerlayout在代码中控制打开和关闭时报错</h4><p>   java.lang.IllegalArgumentException: No drawer view found with gravity LEFT<br>   解决办法:<br>   除了上面那段代码以外，还要在xml中，抽屉部分中增加：</p>
+<p> android:layout_gravity=”left”</p>
+<p>####org.json.JSONException: End of input at character 0 of<br>Json在获取时，对应是空值</p>
+<h4 id="Glide错误"><a href="#Glide错误" class="headerlink" title="Glide错误"></a>Glide错误</h4><p>E/dex2oat: Failed to create oat file: /data/dalvik-cache/x86/data@app@com.example.stormbaron.agank-2@split_lib_dependencies_apk.apk@classes.dex: Permission denied</p>
+<p>####Rxjava 使用时可能遇到的问题　Duplicate files copied in APK META-INF/rxjava.properties<br><figure class="highlight xml"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Error:Execution failed for task ':app:transformResourcesWithMergeJavaResForDebug'. &gt; com.android.build.api.transform.TransformException: com.android.builder.packaging.DuplicateFileException: Duplicate files copied in APK META-INF/rxjava.properties     File1: /home/stormbaron/.android/build-cache/79c3bd52eead62f9651d4f1445d26e97af7ad05b/output/jars/classes.jar     File2: /home/stormbaron/work/gradle-3.4/caches/modules-2/files-2.1/io.reactivex/rxjava/1.0.14/898f9ab61e2a23afd615f0b0389478bec86f49f9/rxjava-1.0.14.jar</div></pre></td></tr></table></figure></p>
+<p>可用的解决方法：<br>  packagingOptions {<br>        exclude ‘META-INF/rxjava.properties’<br>    }</p>
+<h4 id="当Glide正在对某个View进行操作时，如果进行setTag操作会报错"><a href="#当Glide正在对某个View进行操作时，如果进行setTag操作会报错" class="headerlink" title="当Glide正在对某个View进行操作时，如果进行setTag操作会报错"></a>当Glide正在对某个View进行操作时，如果进行setTag操作会报错</h4><p>java.lang.IllegalArgumentException: You must not call setTag() on a view Glide is targeting</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###Android开发错误集锦&lt;/p&gt;
+&lt;p&gt;#####１、NULLPoint空指针&lt;br&gt;Activity生命周期结束，导致其中的持有Actiｖity引用的定时任务的引用变为ｎｕｌｌ。&lt;/p&gt;
+&lt;p&gt;####2、ClassCastException&lt;br&gt;多出现在强制类
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Android测试</title>
+    <link href="http://yoursite.com/2017/08/03/Android%E6%B5%8B%E8%AF%95/"/>
+    <id>http://yoursite.com/2017/08/03/Android测试/</id>
+    <published>2017-08-03T07:19:35.962Z</published>
+    <updated>2017-08-03T07:19:35.962Z</updated>
+    
+    <content type="html"><![CDATA[<p>###Android测试<br>测试在开发中的地位无需多言，在Android开发中，我们最离不开的应该是　单元测试，同时我们也希望对UI页面的各类点击事件进行测试。</p>
+<p>####单元测试　（JUnit）<br>JUnit是我们在进行单元测试常用的测试框架，使用方式<br>首先我们需要添加一下依赖，<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">testCompile <span class="string">'junit:junit:4.12'</span></div></pre></td></tr></table></figure></p>
+<p>在开始编写junit测试之前，需要为其新建一个目录。通常，这个会被叫做test，会和main文件夹平级。在Android studio创建项目时一般会自动生成相关目录。<br><img src="./images/testPath.png" alt="样例"></p>
+<p>#####编写测试样例<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> org.junit.Test;</div><div class="line"><span class="keyword">import</span> <span class="keyword">static</span> junit.framework.Assert.assertEquals;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ExampleUnitTest</span> </span>&#123;</div><div class="line">    <span class="meta">@Test</span></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addition_isCorrect</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</div><div class="line">        assertEquals(<span class="number">8</span>, <span class="number">2</span> * <span class="number">4</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>#####运行测试<br>直接在Android studio中右击项目，然后点击　“Run AllTests”就可以运行，运行结果如下:</p>
+<p>######代码运行正常<br><img src="./images/testExample2.png" alt="样例"></p>
+<p>######代码出现Ｂug<br><img src="./images/testExample3.png" alt="样例"></p>
+<p>####关联Android sdk代码(Robolectric)</p>
+<p>####功能测试(Espresso)</p>
+<p>注意：功能测试需要放在AndroidTest目录下，下面是测试用例：</p>
+<p>####测试覆盖率</p>
+<p>一旦你在你的项目中使用到了测试，那么你肯定想知道你的测试覆盖量。很真实，依然有很多测试覆盖率工具，我推荐的是Jacoco。</p>
+<p>Jacoco</p>
+<p>####代码分析(Android Lint)</p>
+<p>####检测工具LeakCanry 和BlockCanary</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;###Android测试&lt;br&gt;测试在开发中的地位无需多言，在Android开发中，我们最离不开的应该是　单元测试，同时我们也希望对UI页面的各类点击事件进行测试。&lt;/p&gt;
+&lt;p&gt;####单元测试　（JUnit）&lt;br&gt;JUnit是我们在进行单元测试常用的测试框架，使用方式
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Linux终端操作MySQL常用命令</title>
@@ -293,85 +591,6 @@
   </entry>
   
   <entry>
-    <title>ListView的并发问题（异步加载图片)</title>
-    <link href="http://yoursite.com/2017/08/03/%E5%9B%BE%E7%89%87%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://yoursite.com/2017/08/03/图片异步加载详解/</id>
-    <published>2017-08-03T06:21:08.053Z</published>
-    <updated>2017-08-03T06:21:08.053Z</updated>
-    
-    <content type="html"><![CDATA[<p>###ListView的并发问题（异步加载图片）<br>一般处理图片都是放在异步线程中，当通过ListView或者GridView加载大量图片时，经常会出现图片错乱的问题。</p>
-<p>在此，我们学习和讨论一下大量图片的异步加载、缓存，并优化的问题<br>异步加载图片<br><br>Google的官方加载图片的源代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BitmapWorkerTask</span> <span class="keyword">extends</span> <span class="title">AsyncTask</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">final</span> WeakReference imageViewReference;</div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> data = <span class="number">0</span>;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BitmapWorkerTask</span><span class="params">(ImageView imageView)</span> </span>&#123;</div><div class="line">        <span class="comment">// Use a WeakReference to ensure the ImageView can be garbage collected</span></div><div class="line">        imageViewReference = <span class="keyword">new</span> WeakReference(imageView);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Decode image in background.</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> Bitmap <span class="title">doInBackground</span><span class="params">(Integer... params)</span> </span>&#123;</div><div class="line">        data = params[<span class="number">0</span>];</div><div class="line">        <span class="keyword">return</span> decodeSampledBitmapFromResource(getResources(), data, <span class="number">100</span>, <span class="number">100</span>));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// Once complete, see if ImageView is still around and set bitmap.</span></div><div class="line">    <span class="meta">@Override</span></div><div class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">onPostExecute</span><span class="params">(Bitmap bitmap)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (imageViewReference != <span class="keyword">null</span> &amp;&amp; bitmap != <span class="keyword">null</span>) &#123;</div><div class="line">            <span class="keyword">final</span> ImageView imageView = imageViewReference.get();</div><div class="line">            <span class="keyword">if</span> (imageView != <span class="keyword">null</span>) &#123;</div><div class="line">                imageView.setImageBitmap(bitmap);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通过异步加载可以起到不阻碍主线程并优化内存使用的效果，在单独对某个ImageView使用时是非常有效的。</p>
-<p>但在ListView中时，为了View的重复利用，实际我们是不断在重复使用几个相同的View，而我们在滑动异步加载图片时，无法确定异步任务何时启动何时结束，</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;###ListView的并发问题（异步加载图片）&lt;br&gt;一般处理图片都是放在异步线程中，当通过ListView或者GridView加载大量图片时，经常会出现图片错乱的问题。&lt;/p&gt;
-&lt;p&gt;在此，我们学习和讨论一下大量图片的异步加载、缓存，并优化的问题&lt;br&gt;异步加载图片&lt;b
-    
-    </summary>
-    
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Androidd代码注意</title>
-    <link href="http://yoursite.com/2017/08/03/Android%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83%E6%B3%A8%E6%84%8F/"/>
-    <id>http://yoursite.com/2017/08/03/Android代码规范注意/</id>
-    <published>2017-08-03T06:20:32.376Z</published>
-    <updated>2017-08-03T06:20:32.376Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a> 
-<p>####Androidd代码注意</p>
-<p>Toast.makeText(context, “待命成功！”, Toast.LENGTH_SHORT).show();</p>
-<p>######[Accessibility] Missing contentDescription attribute on image<br>在一些没有文本显示的控件里，如imageView和imageButton等，ADT会提示你定义一个android:contentDescription属性，用来描述这个控件的作用</p>
-<p>######Missing labelFor attribute(No label views point to this text field with an ‘android:labelFor=”@+id/password_old_input”‘ attribute)<br>需要在EditText属性中添加inputType和labelFor两个属性。其中labelFor属性的值与id值相同即可</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
-&lt;p&gt;####Androidd代码注意&lt;/p&gt;
-&lt;p&gt;Toast.makeText(context, “待命成功！”, Toast.LENGTH_SHORT).show();&lt;/p&gt;
-&lt;p&gt;######[Accessibility] Miss
-    
-    </summary>
-    
-      <category term="Android" scheme="http://yoursite.com/categories/Android/"/>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android一些零碎的知识整理</title>
-    <link href="http://yoursite.com/2017/08/03/Android%E4%B8%80%E4%BA%9B%E7%BB%86%E8%8A%82/"/>
-    <id>http://yoursite.com/2017/08/03/Android一些细节/</id>
-    <published>2017-08-03T06:08:36.703Z</published>
-    <updated>2017-08-03T06:08:36.703Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a> 
-<p>####Android一些零碎的知识整理</p>
-<p>######Activity生命周期中的一些细节<br><br>(1) <strong>A</strong> Activity启动<strong>B</strong>Activity时onPause和onDetroy方法与<strong>B</strong> Activity生命周期方法的执行次序<br><br>在A启动Ｂ时会先执行A的onPause方法，然后开始执行B的onCreate　-&gt; onStart -&gt; onResume ,最后执行A的onStop</p>
-<p>(2)鉴于(1)中的方法调用顺序，所以在页面跳转时，不可以在onPause中进行耗时的保存工作，可以进行简单的键值对一类的保存，而是将稍微大些的保存放在onStop中</p>
-<p>(3)Activity的４种加载模式　standard、singleTop、singleInstance、singleTaSK.<br><br>android对Activity的管理，采用Task（即栈）来管理多个Activity，当我们启动一个应用时，Android就会为之创建了一个Task,然后启动这个应用的入口Activity。<br>Android的Task是一个有点麻烦的概念，因为Android并没有为Task提供API,因此开发者无法真正访问Task,只能调用Activity的getTaskId()方法来获取它所在的Task的ID。<br><br>（４）startActivity()方法是否可以在子线程中调用？<br>可以，其实这是一种误导的问题，因为startActivity其实不像View那样，因为View的调用不是线程安全的，必须在主线程中调用否则将抛出错误。而startActivity背后是不一样的</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
-&lt;p&gt;####Android一些零碎的知识整理&lt;/p&gt;
-&lt;p&gt;######Activity生命周期中的一些细节&lt;br&gt;&lt;br&gt;(1) &lt;strong&gt;A&lt;/strong&gt; Activity启动&lt;strong&gt;B&lt;/strong&gt;Activit
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Android优化总结</title>
     <link href="http://yoursite.com/2017/08/03/Android%E4%BC%98%E5%8C%96%E6%80%BB%E7%BB%93/"/>
     <id>http://yoursite.com/2017/08/03/Android优化总结/</id>
@@ -559,118 +778,6 @@ xAxis.setValueFormatter(new IAxisValueFormatter() {
 &lt;p&gt;#####&lt;a href=&quot;&quot;&gt;样例&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;#####&lt;a href=&quot;&quot;&gt;特色设置&lt;/a&gt;&lt;/p&gt;
 &lt;p
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title></title>
-    <link href="http://yoursite.com/2017/08/03/Java%E8%BF%90%E7%AE%97%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/"/>
-    <id>http://yoursite.com/2017/08/03/Java运算注意事项/</id>
-    <published>2017-08-03T03:45:27.605Z</published>
-    <updated>2017-08-03T03:45:27.605Z</updated>
-    
-    <content type="html"><![CDATA[<hr>
-<h2 id="title-Java运算注意事项"><a href="#title-Java运算注意事项" class="headerlink" title="title:Java运算注意事项"></a>title:Java运算注意事项</h2><a id="more"></a> 
-<p>#####java 两个整数相除保留两位小数</p>
-<p>java中，当两个整数相除时，由于小数点以后的数字会被截断，运算结果将为整数，此时若希望得到运算结果为浮点数，必须将两整数其一或是两者都强制转换为浮点数。<br>例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">(<span class="keyword">float</span>)a/b <span class="comment">// 将整数其中一个强制转换为浮点数，再与另一个整数相除</span></div><div class="line">a/(<span class="keyword">float</span>)b</div><div class="line">(<span class="keyword">float</span>)a/(<span class="keyword">float</span>)b <span class="comment">// 将两个整数同时强制转换为浮点数后再相除</span></div><div class="line">Java代码  </div><div class="line"><span class="keyword">float</span> num= (<span class="keyword">float</span>)<span class="number">2</span>/<span class="number">3</span>;   </div><div class="line">DecimalFormat df = <span class="keyword">new</span> DecimalFormat(<span class="string">"0.00"</span>);<span class="comment">//格式化小数   </span></div><div class="line">String s = df.format(num);<span class="comment">//返回的是String类型 </span></div><div class="line"><span class="keyword">double</span> data=<span class="number">5</span>/<span class="number">3</span>;　　<span class="comment">//data =1</span></div><div class="line"><span class="keyword">float</span> data2=<span class="number">5</span>/<span class="number">3</span>;  <span class="comment">//data2=1</span></div><div class="line"></div><div class="line"><span class="keyword">double</span> data3=(<span class="keyword">double</span>) <span class="number">5</span>/<span class="number">3</span> <span class="comment">//data3=1.6666666666666667</span></div><div class="line"><span class="keyword">double</span> data3= <span class="number">5</span>/<span class="number">3</span>d        <span class="comment">//data3=1.6666666666666667</span></div><div class="line"><span class="keyword">float</span> data4=(<span class="keyword">float</span>) <span class="number">5</span>/<span class="number">3</span>   <span class="comment">//data4=1.6666666</span></div><div class="line"><span class="keyword">float</span> data5= <span class="number">5</span>/<span class="number">3f</span>         <span class="comment">//data5=1.6666666</span></div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;hr&gt;
-&lt;h2 id=&quot;title-Java运算注意事项&quot;&gt;&lt;a href=&quot;#title-Java运算注意事项&quot; class=&quot;headerlink&quot; title=&quot;title:Java运算注意事项&quot;&gt;&lt;/a&gt;title:Java运算注意事项&lt;/h2&gt;
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Java运算注意事项</title>
-    <link href="http://yoursite.com/2017/08/03/Java%E6%B3%9B%E5%9E%8B%E8%AF%A6%E8%A7%A3/"/>
-    <id>http://yoursite.com/2017/08/03/Java泛型详解/</id>
-    <published>2017-08-03T03:45:20.990Z</published>
-    <updated>2017-08-03T03:45:20.990Z</updated>
-    
-    <content type="html"><![CDATA[<p>###Java泛型<br>在Java开发中，泛型是我们非常频繁使用的知识，它常常与集合一起结伴。<br>泛型是在ＪＤＫ１．５出现的。<br><br><strong>为什么需要它？</strong><br><br>编译期检查，参数化.<br>我们以集合Ｌｉｓｔ为例<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">List             mList;</div><div class="line">List&lt;String&gt;     mListByString ;</div></pre></td></tr></table></figure></p>
-<p>一个是原始的集合Ｌｉｓｔ，一个是泛型化的Ｌｉｓｔ<br>（泛型是在ＪＤＫ１．５出现，官方推荐从那时起尽量使用泛型化的集合，但原生的集合依然可以使用Ｌｉｓｔ、Ｓｅｔ，主要是为了向前兼容，业界已经存在了大量使用原生集合的代码）<br><br>那么上面的两种不同格式有何区别？<br><br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mList.add(<span class="string">"123"</span>);   　　　　　<span class="comment">//正常</span></div><div class="line">mList.add(<span class="number">123</span>);   　　　　　　<span class="comment">//正常</span></div><div class="line"></div><div class="line">mListByString.add(<span class="string">"123"</span>);　　<span class="comment">//正常</span></div><div class="line">mListByString.add(<span class="number">123</span>);     <span class="comment">//编译报错</span></div></pre></td></tr></table></figure></p>
-<p>上面我分别往mList和mListByString添加一个String和一个int,添加了２个类型不同的值，<br><br>当然正常情况下，我们可能只希望添加String类型的值，但无意中就像样例中一样添加了一个ｉｎｔ类型的值。其中原生Ｌｉｓt编译正常，而以String 为参数的泛型List则在编译时报错。</p>
-<p>下面是我们在其他地方使用上面两个Ｌｉｓｔ<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">String name1=mList.get(<span class="number">0</span>);</div><div class="line">String name2=mList.get(<span class="number">1</span>);</div><div class="line"></div><div class="line">String name3=mListByString.get(<span class="number">0</span>);</div><div class="line">String name4=mListByString.get(<span class="number">1</span>);</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;###Java泛型&lt;br&gt;在Java开发中，泛型是我们非常频繁使用的知识，它常常与集合一起结伴。&lt;br&gt;泛型是在ＪＤＫ１．５出现的。&lt;br&gt;&lt;br&gt;&lt;strong&gt;为什么需要它？&lt;/strong&gt;&lt;br&gt;&lt;br&gt;编译期检查，参数化.&lt;br&gt;我们以集合Ｌｉｓｔ为例&lt;br&gt;&lt;b
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android Studio使用记录</title>
-    <link href="http://yoursite.com/2017/08/03/AndroidStudio%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/"/>
-    <id>http://yoursite.com/2017/08/03/AndroidStudio使用记录/</id>
-    <published>2017-08-03T03:44:27.975Z</published>
-    <updated>2017-08-03T03:44:27.975Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a> 
-<p>#####Android Studio使用记录<br> 解决External file changes sync may be slow: The current inotify(7) watch limit is too low. More details. (show balloon)<br> s<br>sudo sysctl fs.inotify.max_user_watches=5242881</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
-&lt;p&gt;#####Android Studio使用记录&lt;br&gt; 解决External file changes sync may be slow: The current inotify(7) watch limit is too low. M
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android Sdk版本问题</title>
-    <link href="http://yoursite.com/2017/08/03/AndroidSDK%E7%89%88%E6%9C%AC%E4%B8%AD%E6%96%B9%E6%B3%95/"/>
-    <id>http://yoursite.com/2017/08/03/AndroidSDK版本中方法/</id>
-    <published>2017-08-03T03:44:22.824Z</published>
-    <updated>2017-08-03T03:44:22.824Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a> 
-<p>####Android Sdk版本问题<br>（１）<br>Notification notification2 = new Notification(R.mipmap.icon_demo, “通知测试”, System.currentTimeMillis());<br>notification2.setLatestEventInfo(getActivity(),”testTitle”,”testContent”,null);</p>
-<p>结果androidstudio报错，setLatestEventInfo该方法找不到，实际上该方法存在于源码中</p>
-<p>FloatMath<br>Android6.0使用 Math.floor 代替 FloatMath.floor 即可，见下图：</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
-&lt;p&gt;####Android Sdk版本问题&lt;br&gt;（１）&lt;br&gt;Notification notification2 = new Notification(R.mipmap.icon_demo, “通知测试”, System.current
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Android中文乱码问题</title>
-    <link href="http://yoursite.com/2017/08/03/AndroidHttp%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2017/08/03/AndroidHttp中文乱码问题/</id>
-    <published>2017-08-03T03:44:17.644Z</published>
-    <updated>2017-08-03T03:44:17.644Z</updated>
-    
-    <content type="html"><![CDATA[<a id="more"></a> 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">URL url = <span class="keyword">new</span> URL(RequestURL);</div><div class="line">HttpURLConnection conn = (HttpURLConnection) url.openConnection();</div><div class="line"></div><div class="line">InputStream input = conn.getInputStream();</div><div class="line">StringBuffer sb1 = <span class="keyword">new</span> StringBuffer();</div><div class="line"><span class="keyword">int</span> ss;</div><div class="line"><span class="keyword">while</span> ((ss = input.read()) != -<span class="number">1</span>) &#123;</div><div class="line">	sb1.append((<span class="keyword">char</span>) ss);</div><div class="line">result = sb1.toString();</div></pre></td></tr></table></figure>
-<p>在这样的操作下，有可能会出现接收到的中文是乱码的，比如后台返回的格式是”UTF-8”，接收到的中文就会是乱码</p>
-<p>解决方法进行转码<br><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">InputStream input = conn.getInputStream();</div><div class="line">InputStreamReader reader=<span class="keyword">new</span> InputStreamReader(input,<span class="string">"UTF-8"</span>);</div><div class="line">StringBuffer sb1 = <span class="keyword">new</span> StringBuffer();</div><div class="line"><span class="keyword">int</span> ss;</div><div class="line"><span class="keyword">while</span> ((ss = reader.read()) != -<span class="number">1</span>) &#123;</div><div class="line">	sb1.append((<span class="keyword">char</span>) ss);</div><div class="line">result = sb1.toString();</div></pre></td></tr></table></figure></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;a id=&quot;more&quot;&gt;&lt;/a&gt; 
-&lt;figure class=&quot;highlight java&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div 
     
     </summary>
     

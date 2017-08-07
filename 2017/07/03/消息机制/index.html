@@ -96,17 +96,17 @@
 
 
 
-<meta name="description" content="####Android的消息机制Handler、MessageQueue、Message、Looper、Thread MessageQueuiey应该是每个主线程（程序）有一个，并由主线程对他进行维护和关联，每个线程都有一个Looper,在死循环的操作MessageQueuiey（放入Message,和取出Message） 取出的Message交给handler进行处理。 一般我们在子线程中">
+<meta name="description" content="####Android的消息机制Handler、MessageQueue、Message、Looper、Thread MessageQueuiey应该是每个主线程（程序）有一个，并由主线程对他进行维护和关联，每个线程都有一个Looper,在死循环的操作MessageQueuiey（放入Message,和取出Message） 取出的Message交给handler进行处理。 一般我们在子线程中想要去">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android的消息机制">
 <meta property="og:url" content="http://yoursite.com/2017/07/03/消息机制/index.html">
 <meta property="og:site_name" content="Baronli">
-<meta property="og:description" content="####Android的消息机制Handler、MessageQueue、Message、Looper、Thread MessageQueuiey应该是每个主线程（程序）有一个，并由主线程对他进行维护和关联，每个线程都有一个Looper,在死循环的操作MessageQueuiey（放入Message,和取出Message） 取出的Message交给handler进行处理。 一般我们在子线程中">
+<meta property="og:description" content="####Android的消息机制Handler、MessageQueue、Message、Looper、Thread MessageQueuiey应该是每个主线程（程序）有一个，并由主线程对他进行维护和关联，每个线程都有一个Looper,在死循环的操作MessageQueuiey（放入Message,和取出Message） 取出的Message交给handler进行处理。 一般我们在子线程中想要去">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-08-03T06:16:54.868Z">
+<meta property="og:updated_time" content="2017-08-06T10:21:31.526Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android的消息机制">
-<meta name="twitter:description" content="####Android的消息机制Handler、MessageQueue、Message、Looper、Thread MessageQueuiey应该是每个主线程（程序）有一个，并由主线程对他进行维护和关联，每个线程都有一个Looper,在死循环的操作MessageQueuiey（放入Message,和取出Message） 取出的Message交给handler进行处理。 一般我们在子线程中">
+<meta name="twitter:description" content="####Android的消息机制Handler、MessageQueue、Message、Looper、Thread MessageQueuiey应该是每个主线程（程序）有一个，并由主线程对他进行维护和关联，每个线程都有一个Looper,在死循环的操作MessageQueuiey（放入Message,和取出Message） 取出的Message交给handler进行处理。 一般我们在子线程中想要去">
 
 
 
@@ -304,6 +304,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Android/" itemprop="url" rel="index">
+                    <span itemprop="name">Android</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -331,8 +353,7 @@
       
 
       
-        <a id="more"></a>  
-<p>####Android的消息机制<br>Handler、MessageQueue、Message、Looper、Thread</p>
+        <p>####Android的消息机制<br>Handler、MessageQueue、Message、Looper、Thread</p>
 <p>MessageQueuiey应该是每个主线程（程序）有一个，并由主线程对他进行维护和关联，<br>每个线程都有一个Looper,在死循环的操作MessageQueuiey（放入Message,和取出Message）</p>
 <p>取出的Message交给handler进行处理。</p>
 <p>一般我们在子线程中想要去更新UI,其实是给主线程的消息池发一条消息，然后在主线程的Handler里指定收到该条消息后需要在主线程中进行哪些操作。</p>
@@ -365,14 +386,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2017/06/06/Android代码规范注意/" rel="next" title="Androidd代码注意">
+                <i class="fa fa-chevron-left"></i> Androidd代码注意
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/12/图片加载框架/" rel="prev" title="Android图片加载框架封装">
-                Android图片加载框架封装 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/04/AndroidHttp中文乱码问题/" rel="prev" title="Android中文乱码问题">
+                Android中文乱码问题 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -441,7 +466,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">51</span>
+                <span class="site-state-item-count">58</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -452,7 +477,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
